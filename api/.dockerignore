@@ -1,0 +1,7 @@
+dist
+media
+node_modules
+.gitignore
+.eslintrc.js
+.prettierrc
+.dockerignore

@@ -1,0 +1,10 @@
+.control-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  width: 100%;
+  padding: 1rem;
+  background: var(--neutral-300);
+}

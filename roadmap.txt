@@ -1,0 +1,23 @@
+User can add song
+User can play any song
+User can add song image
+User can create playlist from songs
+User can add playlist image (default first song image)
+
+Authentication
+
+User can add song to favourite
+User can add private song
+User can create private playlist
+User can add comment to specified fragment of song
+Song visualization
+Playing song in chunks
+
+Stack:
+- React + ts
+- Nest + ts
+- Postgres
+- Typeorm
+- Multer
+- Docker
+- Nginx
