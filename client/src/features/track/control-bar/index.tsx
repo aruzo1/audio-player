@@ -1,7 +1,8 @@
 import { useAudio } from "../audio-context";
-import ProgressBar from "./progress-bar";
+import TrackControler from "./track-controler";
 import style from "./style.module.css";
 import TrackInfo from "./track-info";
+import VolumeControler from "./volume-controler";
 
 function ControlBar() {
   const { track } = useAudio()!;
@@ -9,7 +10,8 @@ function ControlBar() {
   return (
     <div className={style["control-bar"]}>
       <TrackInfo track={track} />
-      <ProgressBar />
+      <TrackControler />
+      <VolumeControler />
     </div>
   );
 }

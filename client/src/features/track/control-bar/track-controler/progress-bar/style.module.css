@@ -1,0 +1,15 @@
+.progress-bar {
+  width: 100%;
+  display: flex;
+  column-gap: 1rem;
+  align-items: center;
+}
+
+.start,
+.end {
+  min-width: 3rem;
+}
+
+.start {
+  text-align: end;
+}

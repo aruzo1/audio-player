@@ -3,9 +3,10 @@
   --brand-200: #3b82f6;
   --brand-300: #2563eb;
   --neutral-100: #a3a3a3;
-  --neutral-200: #404040;
-  --neutral-300: #262626;
-  --neutral-400: #171717;
+  --neutral-200: #525252;
+  --neutral-300: #404040;
+  --neutral-400: #262626;
+  --neutral-500: #171717;
 
   --border-radius: 0.5rem;
 }

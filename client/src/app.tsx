@@ -3,10 +3,17 @@ import { TracksProvider } from "features/track/tracks-context";
 import AddTrackForm from "features/track/add-track-form";
 import ControlBar from "features/track/control-bar";
 import Tracks from "features/track/tracks";
-import Slider from "components/slider";
 
 function App() {
-  return <Slider />;
+  return (
+    <AudioProvider>
+      <TracksProvider>
+        <AddTrackForm />
+        <Tracks />
+      </TracksProvider>
+      <ControlBar />
+    </AudioProvider>
+  );
 }
 
 export default App;

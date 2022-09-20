@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import useForceUpdate from "hooks/use-force-update";
 import { useAudio } from "features/track/audio-context";
 
-function useControlButtons() {
+function useButtons() {
   const { audio } = useAudio()!;
   const forceUpdate = useForceUpdate();
 
@@ -23,4 +23,4 @@ function useControlButtons() {
   };
 }
 
-export default useControlButtons;
+export default useButtons;

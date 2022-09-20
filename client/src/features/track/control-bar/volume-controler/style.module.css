@@ -1,0 +1,10 @@
+.volume-controler {
+  display: flex;
+  align-items: center;
+  justify-self: end;
+}
+
+.volume-controler > input {
+  margin-left: 1rem;
+  max-width: 8rem;
+}

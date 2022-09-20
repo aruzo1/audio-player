@@ -17,7 +17,7 @@ function useProgressBar() {
   }, [audio]);
 
   function currentTimeHandler(e: FormEvent<HTMLInputElement>) {
-    audio.currentTime = parseInt(e.currentTarget.value, 10);
+    audio.currentTime = parseInt(e.currentTarget.value);
   }
 
   return {
