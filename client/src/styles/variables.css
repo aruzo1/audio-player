@@ -1,4 +1,5 @@
 :root {
+  /* colors */
   --brand-100: #60a5fa;
   --brand-200: #3b82f6;
   --brand-300: #2563eb;
@@ -7,6 +8,14 @@
   --neutral-300: #404040;
   --neutral-400: #262626;
   --neutral-500: #171717;
+
+  /* 
+    breakpoints
+    small - 640px
+    medium - 768px
+    large - 1024px
+    extra large - 1280px
+  */
 
   --border-radius: 0.5rem;
 }

@@ -18,8 +18,16 @@ export class TracksService {
     return this.tracksRepository.findOneBy({ id });
   }
 
-  create(createTrackDTO: CreateTrackDTO, filename: string) {
-    const track = this.tracksRepository.create({ ...createTrackDTO, filename })
+  create(
+    createTrackDTO: CreateTrackDTO,
+    trackFilename: string,
+    coverFilename: string,
+  ) {
+    const track = this.tracksRepository.create({
+      ...createTrackDTO,
+      trackFilename,
+      coverFilename,
+    });
 
     return this.tracksRepository.save(track);
   }

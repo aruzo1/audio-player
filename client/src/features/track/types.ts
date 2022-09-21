@@ -1,12 +1,16 @@
 export interface ITrack {
   id: number;
-  url: string;
   title: string;
+  author: string;
+  trackUrl: string;
+  coverUrl: string;
 }
 
 export interface ICrateTrackDTO {
   title: string;
+  author: string;
   track: File;
+  cover: File;
 }
 
 export interface IAudioContext {

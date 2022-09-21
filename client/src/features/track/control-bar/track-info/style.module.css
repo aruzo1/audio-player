@@ -1,6 +1,7 @@
 .track-info {
   display: flex;
   align-items: center;
+  width: 100%;
 }
 
 .img {
@@ -17,16 +18,24 @@
 }
 
 .text {
+  display: grid;
   margin-left: 1rem;
 }
 
 .text > h2 {
   margin-bottom: 0.5rem;
-  font-weight: 600;
   font-size: 18px;
+  font-weight: 600;
 }
 
 .text span {
   font-size: 14px;
   color: var(--neutral-100);
+}
+
+.text > h2,
+.text > span {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }

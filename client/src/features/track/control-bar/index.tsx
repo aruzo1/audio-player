@@ -1,8 +1,8 @@
 import { useAudio } from "../audio-context";
-import TrackControler from "./track-controler";
-import style from "./style.module.css";
 import TrackInfo from "./track-info";
+import TrackControler from "./track-controler";
 import VolumeControler from "./volume-controler";
+import style from "./style.module.css";
 
 function ControlBar() {
   const { track } = useAudio()!;

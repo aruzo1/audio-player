@@ -4,7 +4,7 @@ import style from "./style.module.css";
 
 function TrackControler() {
   return (
-    <div className={style["track-control"]}>
+    <div className={style["track-controler"]}>
       <Buttons />
       <ProgressBar />
     </div>

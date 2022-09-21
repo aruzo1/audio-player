@@ -5,6 +5,12 @@
 }
 
 .volume-controler > input {
+  width: 8rem;
   margin-left: 1rem;
-  max-width: 8rem;
+}
+
+@media (max-width: 640px) {
+  .volume-controler {
+    display: none;
+  }
 }

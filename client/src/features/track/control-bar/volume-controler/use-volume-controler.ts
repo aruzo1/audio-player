@@ -1,22 +1,26 @@
-import { FormEvent, useEffect } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import useForceUpdate from "hooks/use-force-update";
 import { useAudio } from "features/track/audio-context";
 
 function useVolumeControler() {
   const forceUpdate = useForceUpdate();
   const { audio } = useAudio()!;
+  const [muted, setMuted] = useState(false);
 
   useEffect(() => {
     const storedVolume = localStorage.getItem("volume");
-
-    if (storedVolume) {
-      audio.volume = parseFloat(storedVolume);
-    }
+    if (storedVolume) audio.volume = parseFloat(storedVolume);
 
     audio.addEventListener("volumechange", forceUpdate);
-
     return () => audio.removeEventListener("volumechange", forceUpdate);
-  }, [audio]);
+  }, [audio, forceUpdate]);
+
+  function toggleMuted() {
+    if (muted) audio.volume = parseFloat(localStorage.getItem("volume") || "0");
+    else audio.volume = 0;
+
+    setMuted(!muted);
+  }
 
   function volumeHandler(e: FormEvent<HTMLInputElement>) {
     const volume = parseFloat(e.currentTarget.value);
@@ -25,7 +29,7 @@ function useVolumeControler() {
     localStorage.setItem("volume", volume.toString());
   }
 
-  return { volume: audio.volume, volumeHandler };
+  return { muted, toggleMuted, volume: audio.volume, volumeHandler };
 }
 
 export default useVolumeControler;

@@ -6,19 +6,26 @@ import validationSchema from "./validation-schema";
 
 const initalValues = {
   title: "",
+  author: "",
   track: "",
+  cover: "",
 };
 
 function AddTrackForm() {
   const { addTrack } = useTracks()!;
   const trackInput = useRef<HTMLInputElement>();
+  const coverInput = useRef<HTMLInputElement>();
 
   function submitHandler(
     values: typeof initalValues,
     { resetForm }: FormikHelpers<typeof initalValues>
   ) {
     tracksService
-      .create({ ...values, track: trackInput.current!.files![0] })
+      .create({
+        ...values,
+        track: trackInput.current!.files![0],
+        cover: coverInput.current!.files![0],
+      })
       .then((track) => {
         addTrack(track);
         resetForm();
@@ -40,6 +47,11 @@ function AddTrackForm() {
           </div>
 
           <div>
+            <label htmlFor="author">Author</label>
+            <Field id="author" name="author" />
+          </div>
+
+          <div>
             <label htmlFor="track">Track</label>
             <Field
               id="track"
@@ -47,6 +59,17 @@ function AddTrackForm() {
               type="file"
               accept="audio/mpeg"
               innerRef={trackInput}
+            />
+          </div>
+
+          <div>
+            <label htmlFor="cover">Cover</label>
+            <Field
+              id="cover"
+              name="cover"
+              type="file"
+              accept="image/jpeg"
+              innerRef={coverInput}
             />
           </div>
 

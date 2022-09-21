@@ -1,15 +1,5 @@
 .play,
 .pause {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 3rem;
-  height: 3rem;
-  border-radius: 999px;
-  background: var(--neutral-300);
-  transition: 0.1s ease-in-out;
-}
-
-.play:hover, .pause:hover {
-    background: var(--neutral-200);
+  padding: 1rem !important;
+  border-radius: 999px !important;
 }

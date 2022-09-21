@@ -5,14 +5,11 @@ function TrackInfo({ track }: { track?: ITrack }) {
   return (
     <div className={style["track-info"]}>
       <div className={style.img}>
-        <img
-          src="https://i.scdn.co/image/ab6761610000e5ebde7885cffc35ab676e1191d7"
-          alt="track image"
-        />
+        <img src={track?.coverUrl} alt={`${track?.title} cover`} />
       </div>
       <div className={style.text}>
-        <h2>{track?.title}</h2>
-        <span>Malik Montana</span>
+        <h2 title={track?.title}>{track?.title}</h2>
+        <span title={track?.author}>{track?.author}</span>
       </div>
     </div>
   );

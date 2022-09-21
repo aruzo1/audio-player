@@ -3,8 +3,15 @@
   bottom: 0;
   left: 0;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 1fr 1.25fr 1fr;
   width: 100%;
+  gap: 1rem;
   padding: 1rem;
   background: var(--neutral-400);
+}
+
+@media (max-width: 640px) {
+  .control-bar {
+    display: flex;
+  }
 }

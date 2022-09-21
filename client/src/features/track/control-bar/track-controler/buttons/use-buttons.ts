@@ -3,8 +3,8 @@ import useForceUpdate from "hooks/use-force-update";
 import { useAudio } from "features/track/audio-context";
 
 function useButtons() {
-  const { audio } = useAudio()!;
   const forceUpdate = useForceUpdate();
+  const { audio } = useAudio()!;
 
   useEffect(() => {
     audio.addEventListener("play", forceUpdate);
@@ -14,12 +14,12 @@ function useButtons() {
       audio.removeEventListener("play", forceUpdate);
       audio.removeEventListener("pause", forceUpdate);
     };
-  }, [audio]);
+  }, [audio, forceUpdate]);
 
   return {
     play: () => audio.play(),
     pause: () => audio.pause(),
-    isPlaying: !audio.paused,
+    playing: !audio.paused,
   };
 }
 

@@ -1,6 +1,13 @@
-.track-control {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    row-gap: 1rem;
+.track-controler {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 1rem;
+}
+
+@media (max-width: 640px) {
+  .track-controler {
+    justify-self: end;
+    justify-content: center;
+  }
 }

@@ -12,8 +12,8 @@ import { IAudioContext, ITrack } from "./types";
 const AudioContext = createContext<null | IAudioContext>(null);
 
 export function AudioProvider({ children }: { children: ReactNode }) {
-  const [track, setTrack] = useState<ITrack>();
   const audio = useMemo(() => new Audio(), []);
+  const [track, setTrack] = useState<ITrack>();
 
   useEffect(() => {
     const trackId = localStorage.getItem("trackId");
@@ -21,15 +21,17 @@ export function AudioProvider({ children }: { children: ReactNode }) {
     if (trackId) {
       tracksService.findOne(trackId).then((track) => {
         setTrack(track);
-        audio.src = track.url;
+        audio.src = track.trackUrl;
       });
     }
-  }, []);
+  }, [audio]);
 
   function changeTrack(track: ITrack) {
     setTrack(track);
-    audio.src = track.url;
+
+    audio.src = track.trackUrl;
     audio.play();
+
     localStorage.setItem("trackId", track.id.toString());
   }
 

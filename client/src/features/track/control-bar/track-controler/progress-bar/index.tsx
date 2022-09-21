@@ -1,7 +1,7 @@
+import Slider from "components/slider";
 import { dateService } from "services/date-service";
 import useProgressBar from "./use-progress-bar";
 import style from "./style.module.css";
-import Slider from "components/slider";
 
 function ProgressBar() {
   const { duration, currentTime, currentTimeHandler } = useProgressBar();

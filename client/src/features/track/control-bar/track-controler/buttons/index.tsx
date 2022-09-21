@@ -4,17 +4,17 @@ import PauseIcon from "./icons/pause-icon";
 import PlayIcon from "./icons/play-icon";
 
 function Buttons() {
-  const { isPlaying, play, pause } = useButtons();
+  const { playing, play, pause } = useButtons();
 
-  if (!isPlaying)
+  if (!playing)
     return (
-      <button className={style.play} onClick={play}>
+      <button className={`btn ${style.play}`} onClick={play}>
         <PlayIcon />
       </button>
     );
 
   return (
-    <button className={style.pause} onClick={pause}>
+    <button className={`btn ${style.pause}`} onClick={pause}>
       <PauseIcon />
     </button>
   );
