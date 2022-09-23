@@ -1,8 +1,8 @@
 import { ComponentProps, useEffect, useRef } from "react";
-import style from "./style.module.css";
+import { colors } from "styles/theme";
+import { StyledSlider } from "./style";
 
 interface Props extends ComponentProps<"input"> {
-  min: number;
   max: number;
   value: number;
 }
@@ -14,13 +14,11 @@ function Slider(props: Props) {
   useEffect(() => {
     if (sliderRef.current) {
       const percent = (value / max) * 100 + "%";
-      sliderRef.current.style.background = `linear-gradient(to right, #fff ${percent}, var(--neutral-300) ${percent})`;
+      sliderRef.current.style.background = `linear-gradient(to right, #fff ${percent}, ${colors.neutral[300]} ${percent})`;
     }
   }, [value, max]);
 
-  return (
-    <input ref={sliderRef} className={style.slider} type="range" {...props} />
-  );
+  return <StyledSlider {...props} type="range" ref={sliderRef} />;
 }
 
 export default Slider;

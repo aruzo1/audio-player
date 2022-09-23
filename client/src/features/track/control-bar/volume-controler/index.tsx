@@ -2,13 +2,13 @@ import Slider from "components/slider";
 import VolumeIcon from "./icons/volume-icon";
 import VolumeMuteIcon from "./icons/volume-mute-icon";
 import useVolumeControler from "./use-volume-controler";
-import style from "./style.module.css";
+import { StyledVolumeControler } from "./style";
 
 function VolumeControler() {
   const { muted, volume, toggleMuted, volumeHandler } = useVolumeControler();
 
   return (
-    <div className={style["volume-controler"]}>
+    <StyledVolumeControler>
       <button onClick={toggleMuted}>
         {muted ? <VolumeMuteIcon /> : <VolumeIcon />}
       </button>
@@ -20,7 +20,7 @@ function VolumeControler() {
         value={volume}
         onChange={volumeHandler}
       />
-    </div>
+    </StyledVolumeControler>
   );
 }
 

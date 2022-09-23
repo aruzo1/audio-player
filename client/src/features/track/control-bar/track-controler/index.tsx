@@ -1,13 +1,13 @@
 import Buttons from "./buttons";
 import ProgressBar from "./progress-bar";
-import style from "./style.module.css";
+import { StyledTrackControler } from "./style";
 
 function TrackControler() {
   return (
-    <div className={style["track-controler"]}>
+    <StyledTrackControler>
       <Buttons />
       <ProgressBar />
-    </div>
+    </StyledTrackControler>
   );
 }
 

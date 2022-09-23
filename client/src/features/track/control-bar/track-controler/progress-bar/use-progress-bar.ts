@@ -14,7 +14,7 @@ function useProgressBar() {
       audio.removeEventListener("loadedmetadata", forceUpdate);
       audio.removeEventListener("timeupdate", forceUpdate);
     };
-  }, [audio]);
+  }, [audio, forceUpdate]);
 
   function currentTimeHandler(e: FormEvent<HTMLInputElement>) {
     audio.currentTime = parseInt(e.currentTarget.value);
