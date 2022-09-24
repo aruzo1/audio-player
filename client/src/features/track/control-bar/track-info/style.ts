@@ -10,6 +10,7 @@ export const StyledTrackInfo = styled.div`
 export const Cover = styled.div`
   position: relative;
   height: 100%;
+  max-height: 100%;
   aspect-ratio: 1/1;
 `;
 
