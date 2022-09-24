@@ -10,6 +10,16 @@ export const GlobalStyle = createGlobalStyle`
     background: ${colors.neutral[500]};
   }
 
+  ::-moz-selection {
+    background-color: ${colors.brand[200]};
+    color: #fff;
+  }
+
+  ::selection {
+    background-color: ${colors.brand[200]};
+    color: #fff;
+  }
+
   // -----------------------
   // CSS RESET
   // -----------------------
@@ -289,17 +299,5 @@ export const GlobalStyle = createGlobalStyle`
 
   ul {
     list-style: none;
-  }
-
-  ::-moz-selection {
-    background-color: #b3d4fc;
-    color: #000;
-    text-shadow: none;
-  }
-
-  ::selection {
-    background-color: #b3d4fc;
-    color: #000;
-    text-shadow: none;
   }
 `;

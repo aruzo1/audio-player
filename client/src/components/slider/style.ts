@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { colors } from "styles/theme";
 
 export const StyledSlider = styled.input`
   -webkit-appearance: none;
@@ -7,6 +8,9 @@ export const StyledSlider = styled.input`
   height: 6px;
   cursor: pointer;
   border-radius: 999px;
+  background: ${colors.neutral[300]};
+  background-image: linear-gradient(#fff, #fff);
+  background-repeat: no-repeat;
 
   &::-webkit-slider-thumb {
     -webkit-appearance: none;
@@ -27,5 +31,12 @@ export const StyledSlider = styled.input`
   }
   &:hover::-moz-range-thumb {
     background: #fff;
+  }
+
+  &:hover {
+    background-image: linear-gradient(
+      ${colors.brand[200]},
+      ${colors.brand[200]}
+    );
   }
 `;

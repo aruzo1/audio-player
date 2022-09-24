@@ -2,16 +2,18 @@ import { useAudio } from "../audio-context";
 import TrackInfo from "./track-info";
 import TrackControler from "./track-controler";
 import VolumeControler from "./volume-controler";
-import { StyledControlBar } from "./style";
+import { ControlBarContainer, StyledControlBar } from "./style";
 
 function ControlBar() {
   const { track } = useAudio()!;
 
   return (
     <StyledControlBar>
-      <TrackInfo track={track} />
-      <TrackControler />
-      <VolumeControler />
+      <ControlBarContainer>
+        <TrackInfo track={track} />
+        <TrackControler />
+        <VolumeControler />
+      </ControlBarContainer>
     </StyledControlBar>
   );
 }
