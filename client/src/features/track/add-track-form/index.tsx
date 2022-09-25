@@ -1,7 +1,6 @@
 import { useRef } from "react";
-import { Formik, Form, Field, FormikHelpers } from "formik";
+import { Formik, Form, Field } from "formik";
 import { tracksService } from "../service";
-import { useTracks } from "../tracks-context";
 import validationSchema from "./validation-schema";
 
 const initalValues = {
@@ -12,24 +11,15 @@ const initalValues = {
 };
 
 function AddTrackForm() {
-  const { addTrack } = useTracks()!;
   const trackInput = useRef<HTMLInputElement>();
   const coverInput = useRef<HTMLInputElement>();
 
-  function submitHandler(
-    values: typeof initalValues,
-    { resetForm }: FormikHelpers<typeof initalValues>
-  ) {
-    tracksService
-      .create({
-        ...values,
-        track: trackInput.current!.files![0],
-        cover: coverInput.current!.files![0],
-      })
-      .then((track) => {
-        addTrack(track);
-        resetForm();
-      });
+  function submitHandler(values: typeof initalValues) {
+    tracksService.create({
+      ...values,
+      track: trackInput.current!.files![0],
+      cover: coverInput.current!.files![0],
+    });
   }
 
   return (
