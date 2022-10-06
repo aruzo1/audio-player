@@ -15,8 +15,8 @@ function TrackInfo({ track }: { track?: ITrack }) {
         <CoverImg src={track?.coverUrl} alt={`${track?.title} cover`} />
       </Cover>
       <Info>
-        <InfoTitle title={track?.title}>{track?.title}</InfoTitle>
-        <InfoAuthors title={track?.author}>{track?.author}</InfoAuthors>
+        <InfoTitle>{track?.title}</InfoTitle>
+        <InfoAuthors>{track?.author}</InfoAuthors>
       </Info>
     </StyledTrackInfo>
   );

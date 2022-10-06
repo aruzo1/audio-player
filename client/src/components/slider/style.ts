@@ -8,7 +8,7 @@ export const StyledSlider = styled.input`
   height: 6px;
   cursor: pointer;
   border-radius: 999px;
-  background: ${colors.neutral[300]};
+  background: ${colors.neutral[700]};
   background-image: linear-gradient(#fff, #fff);
   background-repeat: no-repeat;
 

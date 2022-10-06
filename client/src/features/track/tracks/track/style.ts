@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { borderRadius, colors } from "styles/theme";
+import { borderRadius, colors, transition } from "styles/theme";
 
 export const Cover = styled.div`
   position: relative;
@@ -25,7 +25,7 @@ export const CoverOverlap = styled.div<{ playing: boolean }>`
   opacity: ${({ playing }) => (playing ? 1 : 0)};
   border-radius: ${borderRadius} ${borderRadius} 0 0;
   background: ${colors.brand[200]}3F;
-  transition: opacity 0.1s ease-in-out;
+  transition: opacity ${transition};
 
   &:hover {
     opacity: 1;
@@ -36,7 +36,7 @@ export const Info = styled.div`
   display: grid;
   padding: 1rem;
   border-radius: 0 0 ${borderRadius} ${borderRadius};
-  background: ${colors.neutral[400]};
+  background: ${colors.neutral[800]};
 `;
 
 export const InfoTitle = styled.h3`
@@ -52,5 +52,5 @@ export const InfoAuthors = styled.span`
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
-  color: ${colors.neutral[100]};
+  color: ${colors.neutral[300]};
 `;

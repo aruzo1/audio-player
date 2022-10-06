@@ -40,6 +40,5 @@ export const InfoAuthors = styled.span`
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
-  font-size: 14px;
-  color: ${colors.neutral[100]};
+  color: ${colors.neutral[300]};
 `;

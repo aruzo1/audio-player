@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { colors, devices } from "styles/theme";
 
 export const StyledControlBar = styled.div`
-  background: ${colors.neutral[400]};
+  background: ${colors.neutral[800]};
 `;
 
 export const ControlBarContainer = styled.div`

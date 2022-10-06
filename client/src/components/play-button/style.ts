@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import { colors } from "styles/theme";
+import { colors, transition } from "styles/theme";
 
 const variants = (variant = "neutral") =>
   ({
@@ -10,9 +10,9 @@ const variants = (variant = "neutral") =>
       }
     `,
     neutral: css`
-      background: ${colors.neutral[300]};
+      background: ${colors.neutral[700]};
       &:hover {
-        background: ${colors.neutral[200]};
+        background: ${colors.neutral[600]};
       }
     `,
   }[variant]);
@@ -25,7 +25,7 @@ export const StyledPlayButton = styled.button<{
   justify-content: center;
   padding: 1rem;
   border-radius: 999px;
-  transition: 0.1s ease-in-out;
+  transition: background-color ${transition};
 
   ${({ variant }) => variants(variant)}
 `;

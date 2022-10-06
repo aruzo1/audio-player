@@ -4,10 +4,10 @@ import { colors } from "./theme";
 export const GlobalStyle = createGlobalStyle`
   html {
     font-family: "Plus Jakarta Sans", sans-serif;
-    font-weight: 400;
+    font-weight: 300;
     font-size: 14px;
     color: #fff;
-    background: ${colors.neutral[500]};
+    background: ${colors.neutral[900]};
   }
 
   ::-moz-selection {
