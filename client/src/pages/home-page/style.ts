@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { devices } from "styles/theme";
 
-export const StyledHome = styled.div`
+export const StyledHomePage = styled.div`
   display: grid;
   grid-template-rows: 1fr auto;
   height: 100vh;

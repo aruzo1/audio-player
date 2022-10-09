@@ -2,11 +2,11 @@ import Button from "components/button";
 import { AudioProvider } from "features/track/audio-context";
 import ControlBar from "features/track/control-bar";
 import Tracks from "features/track/tracks";
-import { StyledHome, Main, MainContainer } from "./style";
+import { StyledHomePage, Main, MainContainer } from "./style";
 
-function Home() {
+function HomePage() {
   return (
-    <StyledHome>
+    <StyledHomePage>
       <AudioProvider>
         <Main>
           <MainContainer>
@@ -16,8 +16,8 @@ function Home() {
         </Main>
         <ControlBar />
       </AudioProvider>
-    </StyledHome>
+    </StyledHomePage>
   );
 }
 
-export default Home;
+export default HomePage;
