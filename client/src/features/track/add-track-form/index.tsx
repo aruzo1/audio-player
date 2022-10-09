@@ -1,5 +1,6 @@
 import { useRef } from "react";
 import { Formik, Form, Field } from "formik";
+import { Button } from "components/button";
 import { tracksService } from "../service";
 import validationSchema from "./validation-schema";
 
@@ -63,7 +64,9 @@ function AddTrackForm() {
             />
           </div>
 
-          <button type="submit">Add Track</button>
+          <Button type="submit" variant="brand">
+            Add Track
+          </Button>
         </Form>
       </Formik>
     </div>

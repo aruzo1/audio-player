@@ -1,5 +1,7 @@
+import AddTrackForm from "features/track/add-track-form";
+
 function AddTrackPage() {
-  return <div>xxx</div>;
+  return <AddTrackForm />;
 }
 
 export default AddTrackPage;

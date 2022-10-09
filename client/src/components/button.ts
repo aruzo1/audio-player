@@ -17,7 +17,7 @@ const variants = (variant = "neutral") =>
     `,
   }[variant]);
 
-export const StyledButton = styled.button<{ variant?: "neutral" | "brand" }>`
+export const Button = styled.button<{ variant?: "neutral" | "brand" }>`
   width: fit-content;
   padding: 0.5rem 1rem;
   border-radius: ${borderRadius};
