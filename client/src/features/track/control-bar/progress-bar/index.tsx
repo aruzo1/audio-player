@@ -8,13 +8,17 @@ function ProgressBar() {
 
   return (
     <StyledProgressBar>
-      <CurrentTime>{dateService.formatSeconds(currentTime)}</CurrentTime>
+      <CurrentTime as="span" variant="h5">
+        {dateService.formatSeconds(currentTime)}
+      </CurrentTime>
       <Slider
         max={duration || 60}
         value={currentTime}
         onChange={currentTimeHandler}
       />
-      <Duration>{dateService.formatSeconds(duration)}</Duration>
+      <Duration as="span" variant="h5">
+        {dateService.formatSeconds(duration)}
+      </Duration>
     </StyledProgressBar>
   );
 }

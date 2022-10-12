@@ -17,7 +17,7 @@ function Slider(props: Props) {
     }
   }, [value, max]);
 
-  return <StyledSlider {...props} type="range" ref={sliderRef} />;
+  return <StyledSlider {...props} ref={sliderRef} type="range" />;
 }
 
 export default Slider;

@@ -1,24 +1,24 @@
 import styled from "styled-components";
-import { devices } from "styles/theme";
+import theme from "styles/theme";
 
 export const StyledTracks = styled.ul`
   display: grid;
   grid-template-columns: repeat(6, 1fr);
-  gap: 1rem;
+  gap: 2rem;
 
-  @media (max-width: ${devices.lg}) {
+  @media (max-width: ${theme.devices.lg}) {
     grid-template-columns: repeat(5, 1fr);
   }
 
-  @media (max-width: ${devices.md}) {
+  @media (max-width: ${theme.devices.md}) {
     grid-template-columns: repeat(4, 1fr);
   }
 
-  @media (max-width: ${devices.sm}) {
+  @media (max-width: ${theme.devices.sm}) {
     grid-template-columns: repeat(3, 1fr);
   }
 
-  @media (max-width: ${devices.xs}) {
+  @media (max-width: ${theme.devices.xs}) {
     grid-template-columns: 1fr;
   }
 `;

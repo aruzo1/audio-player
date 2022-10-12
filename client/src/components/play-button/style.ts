@@ -1,31 +1,35 @@
 import styled, { css } from "styled-components";
-import { colors, transition } from "styles/theme";
+import theme from "styles/theme";
 
-const variants = (variant = "neutral") =>
-  ({
-    brand: css`
-      background: ${colors.brand[200]};
-      &:hover {
-        background: ${colors.brand[100]};
-      }
-    `,
-    neutral: css`
-      background: ${colors.neutral[700]};
-      &:hover {
-        background: ${colors.neutral[600]};
-      }
-    `,
-  }[variant]);
+const variants = {
+  brand: css`
+    background: ${theme.colors.brand[600]};
+    border-color: ${theme.colors.brand[500]};
+
+    &:hover {
+      background: ${theme.colors.brand[500]};
+    }
+  `,
+  neutral: css`
+    background: ${theme.colors.neutral[800]};
+    border-color: ${theme.colors.neutral[700]};
+
+    &:hover {
+      background: ${theme.colors.neutral[700]};
+    }
+  `,
+};
 
 export const StyledPlayButton = styled.button<{
-  variant?: "brand" | "neutral";
+  variant?: keyof typeof variants;
 }>`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 1rem;
-  border-radius: 999px;
-  transition: background-color ${transition};
+  padding: 0.75rem;
+  border-radius: ${theme.radius.full};
+  transition: background-color ${theme.transition};
+  border: 1px solid;
 
-  ${({ variant }) => variants(variant)}
+  ${({ variant }) => variants[variant || "neutral"]}
 `;

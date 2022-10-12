@@ -2,12 +2,12 @@ function PlayIcon() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="18"
-      height="18"
-      viewBox="18.6 15.71 13.45 16.48"
+      width="16"
+      height="16"
+      viewBox="16 11.04 20.7 25.63"
       fill="currentColor"
     >
-      <path d="M20.7 31.95q-.7.45-1.4.05t-.7-1.25v-13.6q0-.85.7-1.25t1.4.05l10.7 6.9q.65.4.65 1.1 0 .7-.65 1.1Z"></path>
+      <path d="M18.3 36.4q-.75.5-1.525.05Q16 36 16 35.1V12.6q0-.9.775-1.35.775-.45 1.525.05L36 22.6q.7.45.7 1.25T36 25.1Z"></path>
     </svg>
   );
 }

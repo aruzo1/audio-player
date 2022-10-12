@@ -1,8 +1,8 @@
 import styled from "styled-components";
-import { devices } from "styles/theme";
+import theme from "styles/theme";
 
 const Container = styled.div`
-  max-width: ${devices.xl};
+  max-width: ${theme.devices.xl};
   width: 100%;
   margin: 0 auto;
   padding: 1rem;

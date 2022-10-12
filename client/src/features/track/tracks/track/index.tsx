@@ -1,14 +1,8 @@
 import PlayButton from "components/play-button";
 import { ITrack } from "../../types";
 import useTrack from "./use-track";
-import {
-  Cover,
-  CoverImg,
-  CoverOverlap,
-  Info,
-  InfoAuthors,
-  InfoTitle,
-} from "./style";
+import { Cover, CoverImg, CoverOverlap, Info } from "./style";
+import Typography from "components/typography";
 
 function Track({ track }: { track: ITrack }) {
   const { currentPlaying, trackAction } = useTrack(track);
@@ -26,8 +20,12 @@ function Track({ track }: { track: ITrack }) {
         </CoverOverlap>
       </Cover>
       <Info>
-        <InfoTitle>{track.title}</InfoTitle>
-        <InfoAuthors>{track.author}</InfoAuthors>
+        <Typography as="h3" variant="h4" truncate={true}>
+          {track.title}
+        </Typography>
+        <Typography as="span" truncate={true}>
+          {track.author}
+        </Typography>
       </Info>
     </li>
   );

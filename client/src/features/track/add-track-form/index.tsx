@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import { Formik, Form, Field } from "formik";
-import { Button } from "components/button";
+import Button from "components/button";
+import Typography from "components/typography";
 import { tracksService } from "../service";
 import validationSchema from "./validation-schema";
 
@@ -25,7 +26,7 @@ function AddTrackForm() {
 
   return (
     <div>
-      <h1>Add Track</h1>
+      <Typography variant="h1">Add Track</Typography>
       <Formik
         initialValues={initalValues}
         onSubmit={submitHandler}

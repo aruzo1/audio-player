@@ -1,22 +1,23 @@
 import styled from "styled-components";
-import { devices } from "styles/theme";
+import Typography from "components/typography";
+import theme from "styles/theme";
 
 export const StyledProgressBar = styled.div`
   display: flex;
   align-items: center;
+  gap: 1rem;
   width: 100%;
-  column-gap: 1rem;
 
-  @media (max-width: ${devices.sm}) {
+  @media (max-width: ${theme.devices.md}) {
     display: none;
   }
 `;
 
-export const CurrentTime = styled.span`
+export const CurrentTime = styled(Typography)`
   min-width: 3rem;
   text-align: end;
 `;
 
-export const Duration = styled.span`
+export const Duration = styled(Typography)`
   min-width: 3rem;
 `;

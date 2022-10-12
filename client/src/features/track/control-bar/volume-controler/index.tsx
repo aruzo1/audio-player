@@ -1,4 +1,5 @@
 import Slider from "components/slider";
+import IconButton from "components/icon-button";
 import VolumeIcon from "./icons/volume-icon";
 import VolumeMuteIcon from "./icons/volume-mute-icon";
 import useVolumeControler from "./use-volume-controler";
@@ -9,9 +10,9 @@ function VolumeControler() {
 
   return (
     <StyledVolumeControler>
-      <button onClick={toggleMuted}>
+      <IconButton onClick={toggleMuted}>
         {muted ? <VolumeMuteIcon /> : <VolumeIcon />}
-      </button>
+      </IconButton>
       <Slider
         type="range"
         step={0.01}

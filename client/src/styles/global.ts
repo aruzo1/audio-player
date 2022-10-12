@@ -1,22 +1,20 @@
 import { createGlobalStyle } from "styled-components";
-import { colors } from "./theme";
+import theme from "./theme";
 
 export const GlobalStyle = createGlobalStyle`
   html {
     font-family: "Plus Jakarta Sans", sans-serif;
-    font-weight: 300;
-    font-size: 14px;
     color: #fff;
-    background: ${colors.neutral[900]};
+    background: ${theme.colors.neutral[900]};
   }
 
   ::-moz-selection {
-    background-color: ${colors.brand[200]};
+    background-color: ${theme.colors.brand[600]};
     color: #fff;
   }
 
   ::selection {
-    background-color: ${colors.brand[200]};
+    background-color: ${theme.colors.brand[600]};
     color: #fff;
   }
 
@@ -26,9 +24,6 @@ export const GlobalStyle = createGlobalStyle`
 
   html {
     box-sizing: border-box;
-    line-height: 1.15;
-    -ms-text-size-adjust: 100%;
-    -webkit-text-size-adjust: 100%;
   }
 
   *,
