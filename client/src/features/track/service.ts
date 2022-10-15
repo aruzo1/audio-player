@@ -10,6 +10,14 @@ export const tracksService = {
     return axios.get<ITrack>(`tracks/${id}`).then((res) => res.data);
   },
 
+  async findPrev(id: number) {
+    return axios.get<ITrack>(`tracks/${id}/prev`).then((res) => res.data);
+  },
+
+  async findNext(id: number) {
+    return axios.get<ITrack>(`tracks/${id}/next`).then((res) => res.data);
+  },
+
   async create(data: ICrateTrackDTO) {
     return axios
       .post<ITrack>("tracks", data, {

@@ -23,6 +23,5 @@ export const CoverImg = styled.img`
 
 export const Info = styled.div`
   display: grid;
-  max-width: 10rem;
-  width: max-content;
+  min-width: 7.5rem;
 `;

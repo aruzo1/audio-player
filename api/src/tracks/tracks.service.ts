@@ -18,6 +18,19 @@ export class TracksService {
     return this.tracksRepository.findOneBy({ id });
   }
 
+  async findPrevOrNext(id: number, next?: boolean) {
+    const track = await this.tracksRepository.findOneBy({ id });
+    if (!track) return null;
+
+    return this.tracksRepository
+      .createQueryBuilder('track')
+      .where(`track.createdAt ${next ? '>' : '<'} :createdAt`, {
+        createdAt: track.createdAt,
+      })
+      .orderBy('track.createdAt', next ? 'ASC' : 'DESC')
+      .getOne();
+  }
+
   create(
     createTrackDTO: CreateTrackDTO,
     trackFilename: string,

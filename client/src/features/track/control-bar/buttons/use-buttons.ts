@@ -1,10 +1,11 @@
 import { useEffect } from "react";
 import useForceUpdate from "hooks/use-force-update";
 import { useAudio } from "features/track/audio-context";
+import { tracksService } from "features/track/service";
 
 function useButtons() {
   const forceUpdate = useForceUpdate();
-  const { audio } = useAudio()!;
+  const { audio, track, changeTrack } = useAudio()!;
 
   useEffect(() => {
     audio.addEventListener("play", forceUpdate);
@@ -16,10 +17,20 @@ function useButtons() {
     };
   }, [audio, forceUpdate]);
 
+  async function playPrevOrNext(next?: boolean) {
+    await tracksService[next ? "findNext" : "findPrev"](track!.id).then(
+      (nextTrack) => {
+        changeTrack(nextTrack);
+        audio.play();
+      }
+    );
+  }
+
   return {
     play: () => audio.play(),
     pause: () => audio.pause(),
     playing: !audio.paused,
+    playPrevOrNext,
   };
 }
 

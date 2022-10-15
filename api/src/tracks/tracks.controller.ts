@@ -9,6 +9,7 @@ import {
   Param,
   UploadedFiles,
   BadRequestException,
+  NotFoundException,
 } from '@nestjs/common';
 import { FileFieldsInterceptor } from '@nestjs/platform-express';
 import { CreateTrackDTO } from './dto/create-track.dto';
@@ -24,8 +25,27 @@ export class TracksController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: number) {
-    return this.tracksService.findOne(id);
+  async findOne(@Param('id') id: number) {
+    const track = this.tracksService.findOne(id);
+
+    if (!track) throw new NotFoundException();
+    return track;
+  }
+
+  @Get(':id/prev')
+  async findPrev(@Param('id') id: number) {
+    const track = await this.tracksService.findPrevOrNext(id);
+
+    if (!track) throw new NotFoundException();
+    return track;
+  }
+
+  @Get(':id/next')
+  async findNext(@Param('id') id: number) {
+    const track = await this.tracksService.findPrevOrNext(id, true);
+
+    if (!track) throw new NotFoundException();
+    return track;
   }
 
   @Post()
