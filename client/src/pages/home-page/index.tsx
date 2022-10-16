@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Button from "components/button";
 import Typography from "components/typography";
 import { AudioProvider } from "features/track/audio-context";
@@ -11,7 +12,9 @@ function HomePage() {
       <AudioProvider>
         <Main>
           <MainContainer>
-            <Button variant="brand">Add Track</Button>
+            <Link to="/tracks/add">
+              <Button variant="brand">Add Track</Button>
+            </Link>
             <Typography as="h2" variant="h1">
               Latest Tracks
             </Typography>

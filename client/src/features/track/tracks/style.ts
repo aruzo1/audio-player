@@ -7,15 +7,15 @@ export const StyledTracks = styled.ul`
   gap: 2rem;
 
   @media (max-width: ${theme.devices.lg}) {
-    grid-template-columns: repeat(5, 1fr);
-  }
-
-  @media (max-width: ${theme.devices.md}) {
     grid-template-columns: repeat(4, 1fr);
   }
 
-  @media (max-width: ${theme.devices.sm}) {
+  @media (max-width: ${theme.devices.md}) {
     grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media (max-width: ${theme.devices.sm}) {
+    grid-template-columns: repeat(2, 1fr);
   }
 
   @media (max-width: ${theme.devices.xs}) {

@@ -2,7 +2,6 @@ import styled from "styled-components";
 import theme from "styles/theme";
 
 export const StyledControlBar = styled.div`
-  border-top: 1px solid ${theme.colors.neutral[700]};
   background: ${theme.colors.neutral[800]};
 `;
 

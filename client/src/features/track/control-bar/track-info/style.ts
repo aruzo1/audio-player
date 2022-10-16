@@ -23,5 +23,9 @@ export const CoverImg = styled.img`
 
 export const Info = styled.div`
   display: grid;
-  min-width: 7.5rem;
+  width: 7.5rem;
+
+  @media (max-width: ${theme.devices.md}) {
+    width: 100%;
+  }
 `;
