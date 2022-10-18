@@ -1,21 +1,25 @@
+import Slider from "components/slider";
 import { dateService } from "services/date-service";
 import useProgressBar from "./use-progress-bar";
+import { CurrentTime, Duration, StyledProgressBar } from "./style";
 
 function ProgressBar() {
   const { duration, currentTime, currentTimeHandler } = useProgressBar();
 
   return (
-    <div>
-      <span>{dateService.formatSeconds(currentTime)}</span>
-      <input
-        type="range"
-        min={0}
-        max={duration || 0}
+    <StyledProgressBar>
+      <CurrentTime as="span" variant="h5">
+        {dateService.formatSeconds(currentTime)}
+      </CurrentTime>
+      <Slider
+        max={duration || 60}
         value={currentTime}
         onChange={currentTimeHandler}
       />
-      <span>{dateService.formatSeconds(duration)}</span>
-    </div>
+      <Duration as="span" variant="h5">
+        {dateService.formatSeconds(duration)}
+      </Duration>
+    </StyledProgressBar>
   );
 }
 

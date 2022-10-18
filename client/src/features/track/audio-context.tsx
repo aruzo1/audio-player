@@ -21,15 +21,14 @@ export function AudioProvider({ children }: { children: ReactNode }) {
     if (trackId) {
       tracksService.findOne(trackId).then((track) => {
         setTrack(track);
-        audio.src = track.url;
+        audio.src = track.trackUrl;
       });
     }
-  }, []);
+  }, [audio]);
 
   function changeTrack(track: ITrack) {
     setTrack(track);
-    audio.src = track.url;
-    audio.play();
+    audio.src = track.trackUrl;
     localStorage.setItem("trackId", track.id.toString());
   }
 

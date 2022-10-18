@@ -1,5 +1,10 @@
 import { Exclude, Expose } from 'class-transformer';
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 @Entity()
 export class Track {
@@ -8,13 +13,28 @@ export class Track {
 
   @Column()
   @Exclude()
-  filename: string;
+  trackFilename: string;
+
+  @Expose()
+  get trackUrl() {
+    return '/api/media/' + this.trackFilename;
+  }
+
+  @Column()
+  @Exclude()
+  coverFilename: string;
+
+  @Expose()
+  get coverUrl() {
+    return '/api/media/' + this.coverFilename;
+  }
 
   @Column()
   title: string;
 
-  @Expose()
-  get url() {
-    return '/api/media/' + this.filename;
-  }
+  @Column()
+  author: string;
+
+  @CreateDateColumn()
+  createdAt: Date;
 }

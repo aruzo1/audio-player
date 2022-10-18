@@ -1,18 +1,22 @@
+import Typography from "components/typography";
 import { ITrack } from "features/track/types";
-import style from "./style.module.css";
+import { Cover, CoverImg, Info, StyledTrackInfo } from "./style";
 
-function TrackInfo({ track }: { track?: ITrack }) {
+function TrackInfo({ track }: { track: ITrack }) {
   return (
-    <div className={style["track-info"]}>
-      <img
-        src="https://a.allegroimg.com/s1024/0c1554/c770339944b8811674bfd3ab42d8"
-        alt="track image"
-      />
-      <div>
-        <h2>{track?.title}</h2>
-        <span>Malik Montana</span>
-      </div>
-    </div>
+    <StyledTrackInfo>
+      <Cover>
+        <CoverImg src={track.coverUrl} alt={`${track.title} cover`} />
+      </Cover>
+      <Info>
+        <Typography as="h3" variant="h4" truncate={true}>
+          {track.title}
+        </Typography>
+        <Typography as="span" truncate={true}>
+          {track.author}
+        </Typography>
+      </Info>
+    </StyledTrackInfo>
   );
 }
 

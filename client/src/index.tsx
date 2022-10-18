@@ -2,9 +2,6 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import axios from "axios";
 import App from "./app";
-import "styles/variables.css";
-import "styles/global.css";
-import "styles/reset.css";
 
 axios.defaults.baseURL = "/api/";
 

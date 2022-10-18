@@ -11,7 +11,6 @@ User can add private song
 User can create private playlist
 User can add comment to specified fragment of song
 Song visualization
-Playing song in chunks
 
 Stack:
 - React + ts

@@ -1,12 +1,20 @@
-import { AudioProvider } from "features/track/audio-context";
-import { TracksProvider } from "features/track/tracks-context";
-import AddTrackForm from "features/track/add-track-form";
-import ControlBar from "features/track/control-bar";
-import Tracks from "features/track/tracks";
-import Slider from "components/slider";
+import { GlobalStyle } from "styles/global";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import HomePage from "pages/home-page";
+import AddTrackPage from "pages/add-track-page";
+
+const router = createBrowserRouter([
+  { path: "/", element: <HomePage /> },
+  { path: "/tracks", children: [{ path: "add", element: <AddTrackPage /> }] },
+]);
 
 function App() {
-  return <Slider />;
+  return (
+    <>
+      <GlobalStyle />
+      <RouterProvider router={router} />
+    </>
+  );
 }
 
 export default App;

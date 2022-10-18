@@ -1,59 +1,79 @@
-import { useRef } from "react";
-import { Formik, Form, Field, FormikHelpers } from "formik";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { Formik, Form } from "formik";
+import VStack from "components/v-stack";
+import Typography from "components/typography";
+import TextInput from "components/text-input";
+import FileInput from "components/file-input";
+import Button from "components/button";
 import { tracksService } from "../service";
-import { useTracks } from "../tracks-context";
 import validationSchema from "./validation-schema";
 
 const initalValues = {
   title: "",
+  author: "",
   track: "",
+  cover: "",
 };
 
 function AddTrackForm() {
-  const { addTrack } = useTracks()!;
-  const trackInput = useRef<HTMLInputElement>();
+  const navigate = useNavigate();
+  const [track, setTrack] = useState<File>();
+  const [cover, setCover] = useState<File>();
 
-  function submitHandler(
-    values: typeof initalValues,
-    { resetForm }: FormikHelpers<typeof initalValues>
-  ) {
+  function submitHandler(values: typeof initalValues) {
     tracksService
-      .create({ ...values, track: trackInput.current!.files![0] })
-      .then((track) => {
-        addTrack(track);
-        resetForm();
-      });
+      .create({
+        ...values,
+        track: track!,
+        cover: cover!,
+      })
+      .then(() => navigate("/"));
   }
 
   return (
-    <div>
-      <h1>Add Track</h1>
+    <VStack gap="1rem">
+      <Typography variant="h1">Add Track</Typography>
       <Formik
         initialValues={initalValues}
         onSubmit={submitHandler}
         validationSchema={validationSchema}
       >
         <Form>
-          <div>
-            <label htmlFor="title">Title</label>
-            <Field id="title" name="title" />
-          </div>
-
-          <div>
-            <label htmlFor="track">Track</label>
-            <Field
-              id="track"
-              name="track"
-              type="file"
-              accept="audio/mpeg"
-              innerRef={trackInput}
+          <VStack gap="1rem">
+            <TextInput
+              name="title"
+              label="Title"
+              placeholder="Starboy, As It Was, Rockstar..."
             />
-          </div>
 
-          <button type="submit">Add Track</button>
+            <TextInput
+              name="author"
+              label="Author"
+              placeholder="Imagine Dragons, Post Malone..."
+            />
+
+            <FileInput
+              name="track"
+              label="Track"
+              accept="audio/mpeg"
+              setFile={setTrack}
+            />
+
+            <FileInput
+              name="cover"
+              label="Cover"
+              accept="image/jpeg"
+              setFile={setCover}
+            />
+
+            <Button type="submit" variant="brand">
+              Add Track
+            </Button>
+          </VStack>
         </Form>
       </Formik>
-    </div>
+    </VStack>
   );
 }
 
