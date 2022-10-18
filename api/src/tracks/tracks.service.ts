@@ -19,13 +19,17 @@ export class TracksService {
   }
 
   async findPrevOrNext(id: number, next?: boolean) {
-    const track = await this.tracksRepository.findOneBy({ id });
-    if (!track) return null;
-
     return this.tracksRepository
       .createQueryBuilder('track')
-      .where(`track.createdAt ${next ? '>' : '<'} :createdAt`, {
-        createdAt: track.createdAt,
+      .where((qb) => {
+        const createdAt = qb
+          .subQuery()
+          .select('track.createdAt')
+          .from(Track, 'track')
+          .where('track.id=:id', { id })
+          .getQuery();
+
+        return `track.createdAt ${next ? '>' : '<'} ${createdAt}`;
       })
       .orderBy('track.createdAt', next ? 'ASC' : 'DESC')
       .getOne();
