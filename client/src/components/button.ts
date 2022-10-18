@@ -21,12 +21,21 @@ const variants = {
 };
 
 const Button = styled.button<{ variant?: keyof typeof variants }>`
-  width: fit-content;
+  display: flex;
+  align-items: center;
+  max-width: 100%;
+  width: max-content;
+  gap: 0.5rem;
   padding: 0.5rem 1rem;
   border-radius: ${theme.radius.default};
   border: 1px solid;
   font-weight: 600;
   transition: background-color ${theme.transition};
+  cursor: pointer;
+
+  & > svg {
+    min-width: max-content;
+  }
 
   ${({ variant }) => variants[variant || "neutral"]}
 `;

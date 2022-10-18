@@ -18,6 +18,11 @@ export const GlobalStyle = createGlobalStyle`
     color: #fff;
   }
 
+  ::placeholder {
+    font-weight: 300;
+    color: ${theme.colors.neutral[500]};
+  }
+
   // -----------------------
   // CSS RESET
   // -----------------------
