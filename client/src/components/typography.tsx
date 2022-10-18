@@ -30,12 +30,14 @@ const variants = {
 };
 
 const truncateStyle = css`
+  width: auto;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
 `;
 
 const Typography = styled.p<Props>`
+  width: fit-content;
   font-weight: 600;
   ${({ variant }) => variants[variant || "p"]}
   ${({ truncate }) => truncate && truncateStyle}
