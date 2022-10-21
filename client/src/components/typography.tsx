@@ -1,11 +1,6 @@
 import styled, { css } from "styled-components";
 import theme from "styles/theme";
 
-interface Props {
-  variant?: keyof typeof variants;
-  truncate?: boolean;
-}
-
 const variants = {
   h1: css`
     font-size: 38px;
@@ -27,17 +22,25 @@ const variants = {
     font-weight: 300;
     color: ${theme.colors.neutral[300]};
   `,
+  error: css`
+    font-size: 14px;
+    font-weight: 300;
+    color: ${theme.colors.danger[600]};
+  `,
 };
 
 const truncateStyle = css`
-  width: auto;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
 `;
 
+interface Props {
+  variant?: keyof typeof variants;
+  truncate?: boolean;
+}
+
 const Typography = styled.p<Props>`
-  width: fit-content;
   font-weight: 600;
   ${({ variant }) => variants[variant || "p"]}
   ${({ truncate }) => truncate && truncateStyle}

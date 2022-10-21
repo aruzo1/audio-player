@@ -67,7 +67,7 @@ function AddTrackForm() {
               setFile={setCover}
             />
 
-            <Button type="submit" variant="brand">
+            <Button type="submit" variant="brand" size="lg">
               Add Track
             </Button>
           </VStack>

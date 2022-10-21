@@ -20,7 +20,24 @@ const variants = {
   `,
 };
 
-const Button = styled.button<{ variant?: keyof typeof variants }>`
+const sizes = {
+  sm: css`
+    padding: 0.25rem 0.5rem;
+  `,
+  md: css`
+    padding: 0.5rem 1rem;
+  `,
+  lg: css`
+    padding: 0.75rem 1.5rem;
+  `,
+};
+
+interface Props {
+  variant?: keyof typeof variants;
+  size?: keyof typeof sizes;
+}
+
+const Button = styled.button<Props>`
   display: flex;
   align-items: center;
   max-width: 100%;
@@ -38,6 +55,7 @@ const Button = styled.button<{ variant?: keyof typeof variants }>`
   }
 
   ${({ variant }) => variants[variant || "neutral"]}
+  ${({ size }) => sizes[size || "md"]}
 `;
 
 export default Button;

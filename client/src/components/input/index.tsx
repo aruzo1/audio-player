@@ -1,4 +1,6 @@
 import { ReactNode } from "react";
+import { ErrorMessage } from "formik";
+import capitalizeFirstLetter from "helpers/capitalize-first-letter";
 import Typography from "components/typography";
 import { StyledInput } from "./style";
 
@@ -16,6 +18,14 @@ function Input({ children, name, label }: Props) {
       </Typography>
 
       {children}
+
+      <ErrorMessage name={name}>
+        {(msg) => (
+          <Typography as="span" variant="error">
+            {capitalizeFirstLetter(msg)}
+          </Typography>
+        )}
+      </ErrorMessage>
     </StyledInput>
   );
 }
