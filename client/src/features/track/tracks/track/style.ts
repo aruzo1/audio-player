@@ -1,13 +1,13 @@
 import styled from "styled-components";
 import theme from "styles/theme";
 
-export const Cover = styled.div`
+export const TrackCover = styled.div`
   position: relative;
   width: 100%;
   aspect-ratio: 1/1;
 `;
 
-export const CoverImg = styled.img`
+export const TrackImg = styled.img`
   position: absolute;
   width: 100%;
   height: 100%;
@@ -15,7 +15,7 @@ export const CoverImg = styled.img`
   border-radius: ${theme.radius.default};
 `;
 
-export const CoverOverlap = styled.div<{ playing: boolean }>`
+export const TrackOverlap = styled.div<{ playing: boolean }>`
   position: absolute;
   display: flex;
   justify-content: center;
@@ -32,7 +32,7 @@ export const CoverOverlap = styled.div<{ playing: boolean }>`
   }
 `;
 
-export const Info = styled.div`
+export const TrackInfo = styled.div`
   display: grid;
   margin-top: 0.5rem;
 `;
