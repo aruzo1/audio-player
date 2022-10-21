@@ -4,18 +4,16 @@ import theme from "styles/theme";
 const variants = {
   brand: css`
     background: ${theme.colors.brand[600]};
-    border-color: ${theme.colors.brand[500]};
 
     &:hover {
       background: ${theme.colors.brand[500]};
     }
   `,
   neutral: css`
-    background: ${theme.colors.neutral[800]};
-    border-color: ${theme.colors.neutral[700]};
+    background: ${theme.colors.neutral[700]};
 
     &:hover {
-      background: ${theme.colors.neutral[700]};
+      background: ${theme.colors.neutral[600]};
     }
   `,
 };
@@ -29,7 +27,6 @@ export const StyledPlayButton = styled.button<{
   padding: 0.75rem;
   border-radius: ${theme.radius.full};
   transition: background-color ${theme.transition};
-  border: 1px solid;
 
   ${({ variant }) => variants[variant || "neutral"]}
 `;
