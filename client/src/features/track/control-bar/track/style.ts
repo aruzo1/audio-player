@@ -1,27 +1,27 @@
 import styled from "styled-components";
 import theme from "styles/theme";
 
-export const StyledTrackInfo = styled.div`
+export const StyledTrack = styled.div`
   display: flex;
   align-items: center;
   gap: 1rem;
 `;
 
-export const Cover = styled.div`
+export const TrackCover = styled.div`
   position: relative;
   height: 4rem;
   aspect-ratio: 1/1;
 `;
 
-export const CoverImg = styled.img`
+export const TrackImg = styled.img`
   position: absolute;
   width: 100%;
   height: 100%;
-  object-fit: cover;
   border-radius: ${theme.radius.default};
+  object-fit: cover;
 `;
 
-export const Info = styled.div`
+export const TrackInfo = styled.div`
   display: grid;
   width: 7.5rem;
 

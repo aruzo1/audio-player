@@ -6,14 +6,16 @@ import useButtons from "./use-buttons";
 import { StyledButtons } from "./style";
 
 function Buttons() {
-  const { playing, play, pause, playPrevOrNext } = useButtons();
+  const { playing, toggle, playPrevOrNext } = useButtons();
 
   return (
     <StyledButtons>
       <IconButton onClick={() => playPrevOrNext()}>
         <PrevIcon />
       </IconButton>
-      <PlayButton playing={playing} onClick={playing ? pause : play} />
+
+      <PlayButton playing={playing} onClick={toggle} />
+
       <IconButton onClick={() => playPrevOrNext(true)}>
         <NextIcon />
       </IconButton>

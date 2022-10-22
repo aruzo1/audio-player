@@ -18,12 +18,14 @@ const variants = {
   `,
 };
 
-export const StyledPlayButton = styled.button<{
+interface Props {
   variant?: keyof typeof variants;
-}>`
+}
+
+export const StyledPlayButton = styled.button<Props>`
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   padding: 0.75rem;
   border-radius: ${theme.radius.full};
   transition: background-color ${theme.transition};

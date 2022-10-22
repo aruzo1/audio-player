@@ -1,11 +1,5 @@
-import {
-  ComponentProps,
-  Dispatch,
-  FormEvent,
-  SetStateAction,
-  useState,
-} from "react";
-import { Field, FieldProps } from "formik";
+import { ComponentProps, FormEvent, useState } from "react";
+import { Field, FieldProps, useFormikContext } from "formik";
 import Button from "components/button";
 import Input from "components/input";
 import UploadIcon from "./upload-icon";
@@ -13,10 +7,10 @@ import UploadIcon from "./upload-icon";
 interface Props extends ComponentProps<"input"> {
   label: string;
   name: string;
-  setFile: Dispatch<SetStateAction<File | undefined>>;
 }
 
-function FileInput({ label, name, setFile, ...props }: Props) {
+function FileInput({ label, name, ...props }: Props) {
+  const { setFieldValue } = useFormikContext();
   const [text, setText] = useState("Choose File");
 
   function inputHandler(e: FormEvent<HTMLInputElement>) {
@@ -24,7 +18,7 @@ function FileInput({ label, name, setFile, ...props }: Props) {
 
     if (file) {
       setText(file.name);
-      setFile(file);
+      setFieldValue(name, file);
     }
   }
 
@@ -39,13 +33,11 @@ function FileInput({ label, name, setFile, ...props }: Props) {
           <input
             {...field}
             {...props}
-            style={{ display: "none" }}
             id={name}
+            style={{ display: "none" }}
+            value=""
             type="file"
-            onChange={(e) => {
-              inputHandler(e);
-              field.onChange(e);
-            }}
+            onChange={inputHandler}
           />
         )}
       </Field>

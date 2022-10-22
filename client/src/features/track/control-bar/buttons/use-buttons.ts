@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import useForceUpdate from "hooks/use-force-update";
-import { useAudio } from "features/track/audio-context";
+import useAudio from "features/track/audio-context";
 import { tracksService } from "features/track/service";
 
 function useButtons() {
@@ -26,9 +26,16 @@ function useButtons() {
     );
   }
 
+  function toggle() {
+    if (audio.paused) {
+      audio.play();
+    } else {
+      audio.pause();
+    }
+  }
+
   return {
-    play: () => audio.play(),
-    pause: () => audio.pause(),
+    toggle,
     playing: !audio.paused,
     playPrevOrNext,
   };

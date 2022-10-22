@@ -3,24 +3,24 @@ import theme from "./theme";
 
 export const GlobalStyle = createGlobalStyle`
   html {
-    font-family: "Plus Jakarta Sans", sans-serif;
     color: #fff;
+    font-family: "Plus Jakarta Sans", sans-serif;
     background: ${theme.colors.neutral[900]};
   }
 
   ::-moz-selection {
-    background-color: ${theme.colors.brand[600]};
     color: #fff;
+    background-color: ${theme.colors.brand[600]};
   }
 
   ::selection {
-    background-color: ${theme.colors.brand[600]};
     color: #fff;
+    background-color: ${theme.colors.brand[600]};
   }
 
   ::placeholder {
-    font-weight: 300;
     color: ${theme.colors.neutral[500]};
+    font-weight: 300;
   }
 
   // -----------------------

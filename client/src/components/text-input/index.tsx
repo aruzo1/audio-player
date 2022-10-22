@@ -1,7 +1,7 @@
 import { ComponentProps } from "react";
 import { Field, FieldProps } from "formik";
 import Input from "../input";
-import { TextField } from "./style";
+import { TextInputField } from "./style";
 
 interface Props extends ComponentProps<"input"> {
   name: string;
@@ -13,7 +13,7 @@ function TextInput({ name, label, ref, ...props }: Props) {
     <Input name={name} label={label}>
       <Field name={name}>
         {({ field }: FieldProps) => (
-          <TextField {...field} {...props} id={name} />
+          <TextInputField {...field} {...props} id={name} />
         )}
       </Field>
     </Input>

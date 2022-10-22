@@ -1,41 +1,33 @@
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Formik, Form } from "formik";
+import { tracksService } from "../service";
+import { ICrateTrackDTO } from "../types";
 import VStack from "components/v-stack";
 import Typography from "components/typography";
 import TextInput from "components/text-input";
 import FileInput from "components/file-input";
 import Button from "components/button";
-import { tracksService } from "../service";
 import validationSchema from "./validation-schema";
 
 const initalValues = {
   title: "",
   author: "",
-  track: "",
-  cover: "",
+  track: null,
+  cover: null,
 };
 
 function AddTrackForm() {
   const navigate = useNavigate();
-  const [track, setTrack] = useState<File>();
-  const [cover, setCover] = useState<File>();
 
-  function submitHandler(values: typeof initalValues) {
-    tracksService
-      .create({
-        ...values,
-        track: track!,
-        cover: cover!,
-      })
-      .then(() => navigate("/"));
+  function submitHandler(values: ICrateTrackDTO) {
+    tracksService.create(values).then(() => navigate("/"));
   }
 
   return (
     <VStack gap="1rem">
-      <Typography variant="h1">Add Track</Typography>
+      <Typography as="h1" variant="h1">Add Track</Typography>
       <Formik
-        initialValues={initalValues}
+        initialValues={initalValues as any}
         onSubmit={submitHandler}
         validationSchema={validationSchema}
       >
@@ -53,19 +45,9 @@ function AddTrackForm() {
               placeholder="Imagine Dragons, Post Malone..."
             />
 
-            <FileInput
-              name="track"
-              label="Track"
-              accept="audio/mpeg"
-              setFile={setTrack}
-            />
+            <FileInput name="track" label="Track" accept="audio/mpeg" />
 
-            <FileInput
-              name="cover"
-              label="Cover"
-              accept="image/jpeg"
-              setFile={setCover}
-            />
+            <FileInput name="cover" label="Cover" accept="image/jpeg" />
 
             <Button type="submit" variant="brand" size="lg">
               Add Track

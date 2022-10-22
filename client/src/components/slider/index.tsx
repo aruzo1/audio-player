@@ -1,23 +1,23 @@
-import { ComponentProps, useEffect, useRef } from "react";
+import { ComponentProps, RefObject, useMemo } from "react";
 import { StyledSlider } from "./style";
 
 interface Props extends ComponentProps<"input"> {
   max: number;
   value: number;
+  ref?: RefObject<HTMLInputElement>;
 }
 
 function Slider(props: Props) {
   const { value, max } = props;
-  const sliderRef = useRef<HTMLInputElement>(null);
+  const percent = useMemo(() => (value / max) * 100, [value, max]);
 
-  useEffect(() => {
-    if (sliderRef.current) {
-      const percent = (value / max) * 100;
-      sliderRef.current.style.backgroundSize = `${percent}% 100%`;
-    }
-  }, [value, max]);
-
-  return <StyledSlider {...props} ref={sliderRef} type="range" />;
+  return (
+    <StyledSlider
+      {...props}
+      style={{ backgroundSize: `${percent}% 100%` }}
+      type="range"
+    />
+  );
 }
 
 export default Slider;

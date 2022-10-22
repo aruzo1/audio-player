@@ -1,21 +1,19 @@
-import { useAudio } from "../audio-context";
-import TrackInfo from "./track-info";
 import VolumeControler from "./volume-controler";
 import ProgressBar from "./progress-bar";
 import Buttons from "./buttons";
+import Track from "./track";
 import useControlBar from "./use-control-bar";
 import { ControlBarContainer, StyledControlBar } from "./style";
 
 function ControlBar() {
-  const { track } = useAudio()!;
-  useControlBar();
+  const { track } = useControlBar();
 
   if (!track) return null;
 
   return (
     <StyledControlBar>
       <ControlBarContainer>
-        <TrackInfo track={track} />
+        <Track track={track} />
         <Buttons />
         <ProgressBar />
         <VolumeControler />

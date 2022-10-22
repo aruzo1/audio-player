@@ -9,10 +9,7 @@ function useClickOutside(ref: RefObject<any>, onClickOutside: () => void) {
     }
 
     document.addEventListener("mousedown", handleClickOutside);
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [ref, onClickOutside]);
 }
 

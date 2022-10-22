@@ -1,6 +1,5 @@
-import PlayButton from "components/play-button";
 import { ITrack } from "../../types";
-import useTrack from "./use-track";
+import PlayButton from "components/play-button";
 import Typography from "components/typography";
 import { Disclosure } from "components/disclosure";
 import {
@@ -13,6 +12,7 @@ import {
 } from "./style";
 import Button from "components/button";
 import DotsIcon from "./dots-icon";
+import useTrack from "./use-track";
 
 function Track({ track }: { track: ITrack }) {
   const { playing, toggleTrack, menu, hovering, hoveringListener } =
@@ -27,7 +27,7 @@ function Track({ track }: { track: ITrack }) {
           <PlayButton variant="brand" playing={playing} onClick={toggleTrack} />
         </TrackOverlap>
 
-        <TrackMenu visible={menu.disclosure.visible || hovering} ref={menu.ref}>
+        <TrackMenu ref={menu.ref} visible={menu.disclosure.visible || hovering}>
           <Disclosure disclosure={menu.disclosure}>
             <Disclosure.Button>
               <Button size="sm">

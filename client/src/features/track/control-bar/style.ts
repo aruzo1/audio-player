@@ -1,17 +1,15 @@
 import styled from "styled-components";
 import theme from "styles/theme";
+import Container from "components/container";
 
 export const StyledControlBar = styled.div`
+  padding: 1rem 0;
   background: ${theme.colors.neutral[800]};
 `;
 
-export const ControlBarContainer = styled.div`
+export const ControlBarContainer = styled(Container)`
   display: flex;
-  max-width: ${theme.devices.xl};
-  width: 100%;
   gap: 2rem;
-  margin: 0 auto;
-  padding: 1rem;
 
   @media (max-width: ${theme.devices.md}) {
     justify-content: space-between;

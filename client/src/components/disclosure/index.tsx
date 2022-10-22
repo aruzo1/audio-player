@@ -7,9 +7,9 @@ import {
 } from "react";
 import useDisclosure from "./use-disclosure";
 
-type IDisclosureContext = ReturnType<typeof useDisclosure> | null;
+type Context = ReturnType<typeof useDisclosure> | null;
 
-const DisclosureContext = createContext<IDisclosureContext>(null);
+const DisclosureContext = createContext<Context>(null);
 
 interface IDisclosureProvider {
   children: ReactNode;

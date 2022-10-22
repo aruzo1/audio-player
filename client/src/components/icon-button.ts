@@ -2,8 +2,8 @@ import styled from "styled-components";
 import theme from "styles/theme";
 
 const IconButton = styled.button`
-  cursor: pointer;
   color: #fff;
+  cursor: pointer;
   transition: ${theme.transition};
 
   &:hover {

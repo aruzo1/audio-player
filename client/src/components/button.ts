@@ -3,16 +3,16 @@ import theme from "styles/theme";
 
 const variants = {
   brand: css`
-    background: ${theme.colors.brand[600]};
     border-color: ${theme.colors.brand[500]};
+    background: ${theme.colors.brand[600]};
 
     &:hover {
       background: ${theme.colors.brand[500]};
     }
   `,
   neutral: css`
-    background: ${theme.colors.neutral[800]};
     border-color: ${theme.colors.neutral[700]};
+    background: ${theme.colors.neutral[800]};
 
     &:hover {
       background: ${theme.colors.neutral[700]};
@@ -39,18 +39,18 @@ interface Props {
 }
 
 const Button = styled.button<Props>`
-  cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
-  max-width: 100%;
   width: ${({ full }) => (full ? "100%" : "max-content")};
-  gap: 0.5rem;
+  max-width: 100%;
   padding: 0.5rem 1rem;
   border-radius: ${theme.radius.default};
   font-weight: 600;
-  transition: background-color ${theme.transition};
   word-break: break-all;
+  cursor: pointer;
+  transition: background-color ${theme.transition};
+  gap: 0.5rem;
 
   & > svg {
     min-width: max-content;

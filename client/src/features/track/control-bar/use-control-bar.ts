@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useAudio } from "../audio-context";
+import useAudio from "../audio-context";
 import { tracksService } from "../service";
 
 function useControlBar() {
@@ -15,7 +15,9 @@ function useControlBar() {
 
     audio.addEventListener("ended", playNext);
     return () => audio.removeEventListener("ended", playNext);
-  }, [audio, track?.id]);
+  }, [audio, track, changeTrack]);
+
+  return { track };
 }
 
 export default useControlBar;

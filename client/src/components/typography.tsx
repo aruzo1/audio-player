@@ -18,21 +18,21 @@ const variants = {
     font-size: 16px;
   `,
   p: css`
-    font-size: 14px;
-    font-weight: 300;
     color: ${theme.colors.neutral[300]};
+    font-weight: 300;
+    font-size: 14px;
   `,
   error: css`
-    font-size: 14px;
-    font-weight: 300;
     color: ${theme.colors.danger[600]};
+    font-weight: 300;
+    font-size: 14px;
   `,
 };
 
 const truncateStyle = css`
+  overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  overflow: hidden;
 `;
 
 interface Props {

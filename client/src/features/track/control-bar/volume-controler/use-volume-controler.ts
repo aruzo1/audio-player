@@ -1,6 +1,6 @@
 import { FormEvent, useEffect, useState } from "react";
 import useForceUpdate from "hooks/use-force-update";
-import { useAudio } from "features/track/audio-context";
+import useAudio from "features/track/audio-context";
 
 function useVolumeControler() {
   const forceUpdate = useForceUpdate();

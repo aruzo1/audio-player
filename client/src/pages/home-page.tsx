@@ -12,6 +12,7 @@ function HomePage() {
         <Link to="/tracks/add">
           <Button variant="brand">Add Track</Button>
         </Link>
+        
         <Typography as="h2" variant="h1">
           Latest Tracks
         </Typography>

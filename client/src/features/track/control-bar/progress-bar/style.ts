@@ -5,19 +5,19 @@ import theme from "styles/theme";
 export const StyledProgressBar = styled.div`
   display: flex;
   align-items: center;
-  gap: 1rem;
   width: 100%;
+  gap: 1rem;
 
   @media (max-width: ${theme.devices.md}) {
     display: none;
   }
 `;
 
-export const CurrentTime = styled(Typography)`
+export const ProgressBarTime = styled(Typography)`
   min-width: 3rem;
   text-align: end;
 `;
 
-export const Duration = styled(Typography)`
+export const ProgressBarDuration = styled(Typography)`
   min-width: 3rem;
 `;
