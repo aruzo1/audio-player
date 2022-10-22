@@ -14,23 +14,23 @@ const StyledTrackSkeleton = styled(VStack)`
 
 const TrackSkeltonImg = styled.div`
   width: 100%;
-  aspect-ratio: 1/1;
-  background: ${theme.colors.neutral[800]};
   border-radius: ${theme.radius.default};
+  background: ${theme.colors.neutral[800]};
+  aspect-ratio: 1/1;
 `;
 
 const TrackSkeletonTitle = styled.div`
   width: 75%;
   height: 1.5rem;
-  background: ${theme.colors.neutral[800]};
   border-radius: ${theme.radius.default};
+  background: ${theme.colors.neutral[800]};
 `;
 
 const TrackSkeletonAuthor = styled.div`
   width: 50%;
   height: 1rem;
-  background: ${theme.colors.neutral[800]};
   border-radius: ${theme.radius.default};
+  background: ${theme.colors.neutral[800]};
 `;
 
 function TrackSkeleton() {

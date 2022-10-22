@@ -5,6 +5,16 @@ import Container from "components/container";
 export const StyledControlBar = styled.div`
   padding: 1rem 0;
   background: ${theme.colors.neutral[800]};
+  animation: slide-up ${theme.transition};
+
+  @keyframes slide-up {
+    0% {
+      transform: translateY(100%);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
 `;
 
 export const ControlBarContainer = styled(Container)`

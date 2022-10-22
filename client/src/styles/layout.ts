@@ -4,6 +4,7 @@ export const Layout = styled.div`
   display: grid;
   height: 100vh;
   grid-template-rows: 1fr auto;
+  overflow-y: hidden;
 `;
 
 export const Main = styled.div`
