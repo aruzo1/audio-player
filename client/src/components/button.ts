@@ -35,14 +35,16 @@ const sizes = {
 interface Props {
   variant?: keyof typeof variants;
   size?: keyof typeof sizes;
+  full?: boolean;
 }
 
 const Button = styled.button<Props>`
   cursor: pointer;
   display: flex;
+  justify-content: center;
   align-items: center;
   max-width: 100%;
-  width: max-content;
+  width: ${({ full }) => (full ? "100%" : "max-content")};
   gap: 0.5rem;
   padding: 0.5rem 1rem;
   border-radius: ${theme.radius.default};

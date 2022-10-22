@@ -5,6 +5,7 @@ export const StyledTracks = styled.ul`
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   gap: 2rem;
+  width: 100%;
 
   @media (max-width: ${theme.devices.lg}) {
     grid-template-columns: repeat(4, 1fr);
