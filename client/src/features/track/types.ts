@@ -6,14 +6,14 @@ export interface ITrack {
   coverUrl: string;
 }
 
-export interface ICrateTrackDTO {
+export interface ICrateTrack {
   title: string;
   author: string;
   track: File;
   cover: File;
 }
 
-export interface IUpdateTrackDTO {
+export interface IUpdateTrack {
   title: string;
   author: string;
 }

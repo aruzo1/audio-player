@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Container from "components/container";
 import TrackForm from "features/track/track-form";
 import { tracksService } from "features/track/service";
-import { ICrateTrackDTO } from "features/track/types";
+import { ICrateTrack } from "features/track/types";
 
 const initialValues = {
   title: "",
@@ -22,7 +22,7 @@ const validationSchema = yup.object().shape({
 function AddTrackPage() {
   const navigate = useNavigate();
 
-  function submitHandler(values: ICrateTrackDTO) {
+  function submitHandler(values: ICrateTrack) {
     tracksService.create(values).then(() => navigate("/"));
   }
 

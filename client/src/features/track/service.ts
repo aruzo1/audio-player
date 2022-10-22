@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ICrateTrackDTO, ITrack, IUpdateTrackDTO } from "./types";
+import { ICrateTrack, ITrack, IUpdateTrack } from "./types";
 
 export const tracksService = {
   async findAll() {
@@ -18,13 +18,13 @@ export const tracksService = {
     return axios.get<ITrack>(`tracks/${id}/next`).then((res) => res.data);
   },
 
-  async update(id: string, data: IUpdateTrackDTO) {
+  async update(id: string, data: IUpdateTrack) {
     return axios.put<void>(`tracks/${id}`, data, {
       headers: { "Content-Type": "multipart/form-data" },
     });
   },
 
-  async create(data: ICrateTrackDTO) {
+  async create(data: ICrateTrack) {
     return axios
       .post<ITrack>("tracks", data, {
         headers: { "Content-Type": "multipart/form-data" },

@@ -15,8 +15,18 @@ export class TracksService {
     @InjectRepository(Track) private tracksRepository: Repository<Track>,
   ) {}
 
-  findAll() {
-    return this.tracksRepository.find({ order: { createdAt: 'ASC' } });
+  async findAll(category?: number) {
+    const query = this.tracksRepository.createQueryBuilder('track');
+
+    if (category) {
+      query
+        .distinct(true)
+        .innerJoin('track.categories', 'category', 'category.id=:id', {
+          id: category,
+        });
+    }
+
+    return query.getMany();
   }
 
   findOne(id: number) {

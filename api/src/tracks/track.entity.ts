@@ -1,8 +1,11 @@
 import { Exclude, Expose } from 'class-transformer';
+import { Category } from 'src/categories/category.entity';
 import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinTable,
+  ManyToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
@@ -37,4 +40,8 @@ export class Track {
 
   @CreateDateColumn()
   createdAt: Date;
+
+  @ManyToMany(() => Category, { cascade: true })
+  @JoinTable()
+  categories: Category[];
 }

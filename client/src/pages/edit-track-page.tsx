@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Container from "components/container";
 import TrackForm from "features/track/track-form";
-import { IUpdateTrackDTO, ITrackFormInitialValues } from "features/track/types";
+import { IUpdateTrack, ITrackFormInitialValues } from "features/track/types";
 import { tracksService } from "features/track/service";
 import Button from "components/button";
 
@@ -22,9 +22,9 @@ function EditTrackPage() {
       .findOne(id!)
       .then(({ title, author }) => setInitialValues({ title, author }))
       .catch(() => navigate("/"));
-  }, [setInitialValues, id]);
+  }, [setInitialValues, id, navigate]);
 
-  function submitHandler(values: IUpdateTrackDTO) {
+  function submitHandler(values: IUpdateTrack) {
     tracksService.update(id!, values).then(() => navigate("/"));
   }
 

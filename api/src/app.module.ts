@@ -3,6 +3,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import configuration from './config/configuration';
 import { TracksModule } from './tracks/tracks.module';
+import { CategoriesModule } from './categories/categories.module';
 
 @Module({
   imports: [
@@ -24,6 +25,7 @@ import { TracksModule } from './tracks/tracks.module';
       inject: [ConfigService],
     }),
     TracksModule,
+    CategoriesModule,
   ],
 })
 export class AppModule {}
