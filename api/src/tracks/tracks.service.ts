@@ -16,7 +16,7 @@ export class TracksService {
   ) {}
 
   findAll() {
-    return this.tracksRepository.find();
+    return this.tracksRepository.find({ order: { createdAt: 'ASC' } });
   }
 
   findOne(id: number) {
@@ -65,6 +65,17 @@ export class TracksService {
     });
 
     return this.tracksRepository.save(track);
+  }
+
+  async delete(id: number) {
+    const result = await this.tracksRepository
+      .createQueryBuilder()
+      .delete()
+      .from(Track)
+      .where({ id })
+      .execute();
+
+    return result.affected;
   }
 
   validateTrackAndCover(

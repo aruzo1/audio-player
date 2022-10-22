@@ -5,6 +5,7 @@ import Container from "components/container";
 import TrackForm from "features/track/track-form";
 import { IUpdateTrackDTO, ITrackFormInitialValues } from "features/track/types";
 import { tracksService } from "features/track/service";
+import Button from "components/button";
 
 const validationSchema = yup.object().shape({
   title: yup.string().required(),
@@ -19,11 +20,16 @@ function EditTrackPage() {
   useEffect(() => {
     tracksService
       .findOne(id!)
-      .then(({ title, author }) => setInitialValues({ title, author }));
-  }, [setInitialValues]);
+      .then(({ title, author }) => setInitialValues({ title, author }))
+      .catch(() => navigate("/"));
+  }, [setInitialValues, id]);
 
   function submitHandler(values: IUpdateTrackDTO) {
     tracksService.update(id!, values).then(() => navigate("/"));
+  }
+
+  function deleteHandler() {
+    tracksService.delete(id!).then(() => navigate("/"));
   }
 
   if (!initialValues) return null;
@@ -35,6 +41,12 @@ function EditTrackPage() {
         initialValues={initialValues}
         validationSchema={validationSchema}
         onSubmit={submitHandler}
+        buttonText="Edit"
+        extraButton={
+          <Button size="lg" onClick={deleteHandler}>
+            Delete
+          </Button>
+        }
       />
     </Container>
   );

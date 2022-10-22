@@ -33,6 +33,7 @@ function AddTrackPage() {
         initialValues={initialValues}
         validationSchema={validationSchema}
         onSubmit={submitHandler}
+        buttonText="Add"
       />
     </Container>
   );

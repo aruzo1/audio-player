@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { ITrack } from "../../types";
 import PlayButton from "components/play-button";
 import Typography from "components/typography";
@@ -13,7 +14,6 @@ import {
 import Button from "components/button";
 import DotsIcon from "./dots-icon";
 import useTrack from "./use-track";
-import { Link } from "react-router-dom";
 
 function Track({ track }: { track: ITrack }) {
   const { playing, toggleTrack, menu, menuRef, hovering, hoveringListener } =

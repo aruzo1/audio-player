@@ -10,6 +10,7 @@ import {
   NotFoundException,
   HttpCode,
   Put,
+  Delete,
 } from '@nestjs/common';
 import { FileFieldsInterceptor } from '@nestjs/platform-express';
 import { CreateTrackDTO } from './dto/create-track.dto';
@@ -27,7 +28,7 @@ export class TracksController {
 
   @Get(':id')
   async findOne(@Param('id') id: number) {
-    const track = this.tracksService.findOne(id);
+    const track = await this.tracksService.findOne(id);
 
     if (!track) throw new NotFoundException();
     return track;
@@ -57,7 +58,7 @@ export class TracksController {
       { name: 'cover', maxCount: 1 },
     ]),
   )
-  update(
+  async update(
     @UploadedFiles()
     {
       track,
@@ -67,8 +68,13 @@ export class TracksController {
     @Body() updateTrackDTO: UpdateTrackDTO,
   ) {
     const validFiles = this.tracksService.validateTrackAndCover(track, cover);
+    const updated = await this.tracksService.update(
+      id,
+      updateTrackDTO,
+      validFiles,
+    );
 
-    return this.tracksService.update(id, updateTrackDTO, validFiles);
+    if (!updated) throw new NotFoundException();
   }
 
   @Post()
@@ -91,5 +97,13 @@ export class TracksController {
 
     if (!validFiles.track || !validFiles.cover) throw new BadRequestException();
     return this.tracksService.create(createTrackDTO, validFiles);
+  }
+
+  @Delete(':id')
+  @HttpCode(204)
+  async delete(@Param('id') id: number) {
+    const deleted = await this.tracksService.delete(id);
+
+    if (!deleted) throw new NotFoundException();
   }
 }

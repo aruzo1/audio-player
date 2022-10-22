@@ -31,4 +31,8 @@ export const tracksService = {
       })
       .then((res) => res.data);
   },
+
+  async delete(id: string) {
+    return axios.delete<void>(`tracks/${id}`);
+  },
 };
