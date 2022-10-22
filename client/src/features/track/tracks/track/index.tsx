@@ -13,9 +13,10 @@ import {
 import Button from "components/button";
 import DotsIcon from "./dots-icon";
 import useTrack from "./use-track";
+import { Link } from "react-router-dom";
 
 function Track({ track }: { track: ITrack }) {
-  const { playing, toggleTrack, menu, hovering, hoveringListener } =
+  const { playing, toggleTrack, menu, menuRef, hovering, hoveringListener } =
     useTrack(track);
 
   return (
@@ -27,8 +28,8 @@ function Track({ track }: { track: ITrack }) {
           <PlayButton variant="brand" playing={playing} onClick={toggleTrack} />
         </TrackOverlap>
 
-        <TrackMenu ref={menu.ref} visible={menu.disclosure.visible || hovering}>
-          <Disclosure disclosure={menu.disclosure}>
+        <TrackMenu visible={menu.visible || hovering} ref={menuRef}>
+          <Disclosure disclosure={menu}>
             <Disclosure.Button>
               <Button size="sm">
                 <DotsIcon />
@@ -37,12 +38,9 @@ function Track({ track }: { track: ITrack }) {
 
             <Disclosure.Content>
               <TrackMenuContent>
-                <li>
+                <Link to={`tracks/edit/${track.id}`}>
                   <Button full={true}>Edit</Button>
-                </li>
-                <li>
-                  <Button full={true}>Delete</Button>
-                </li>
+                </Link>
               </TrackMenuContent>
             </Disclosure.Content>
           </Disclosure>

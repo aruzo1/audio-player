@@ -12,3 +12,15 @@ export interface ICrateTrackDTO {
   track: File;
   cover: File;
 }
+
+export interface IUpdateTrackDTO {
+  title: string;
+  author: string;
+}
+
+export interface ITrackFormInitialValues {
+  title: string;
+  author: string;
+  track?: File;
+  cover?: File;
+}

@@ -8,10 +8,10 @@ import useClickOutside from "hooks/use-click-outside";
 function useTrack(track: ITrack) {
   const { audio, track: playingTrack, changeTrack } = useAudio()!;
   const forceUpdate = useForceUpdate();
-  
-  const menuDisclosure = useDisclosure();
+
+  const menu = useDisclosure();
   const menuRef = useRef(null);
-  useClickOutside(menuRef, menuDisclosure.close);
+  useClickOutside(menuRef, menu.close);
 
   const [hovering, setHovering] = useState(false);
   const hoveringListener = useMemo(
@@ -46,10 +46,8 @@ function useTrack(track: ITrack) {
   return {
     playing: !audio.paused && track.id === playingTrack?.id,
     toggleTrack,
-    menu: {
-      disclosure: menuDisclosure,
-      ref: menuRef,
-    },
+    menu,
+    menuRef,
     hovering,
     hoveringListener,
   };

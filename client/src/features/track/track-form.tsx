@@ -1,34 +1,31 @@
-import { useNavigate } from "react-router-dom";
 import { Formik, Form } from "formik";
-import { tracksService } from "../service";
-import { ICrateTrackDTO } from "../types";
+import { ObjectSchema } from "yup";
 import VStack from "components/v-stack";
-import Typography from "components/typography";
 import TextInput from "components/text-input";
 import FileInput from "components/file-input";
+import Typography from "components/typography";
 import Button from "components/button";
-import validationSchema from "./validation-schema";
+import { ITrackFormInitialValues } from "./types";
 
-const initalValues = {
-  title: "",
-  author: "",
-  track: null,
-  cover: null,
-};
+interface Props {
+  title: string;
+  onSubmit: (values: any) => void;
+  initialValues: ITrackFormInitialValues;
+  validationSchema: ObjectSchema<any>;
+}
 
-function AddTrackForm() {
-  const navigate = useNavigate();
-
-  function submitHandler(values: ICrateTrackDTO) {
-    tracksService.create(values).then(() => navigate("/"));
-  }
+function TrackForm(props: Props) {
+  const { title, onSubmit, initialValues, validationSchema } = props;
 
   return (
     <VStack gap="1rem">
-      <Typography as="h1" variant="h1">Add Track</Typography>
+      <Typography as="h1" variant="h1">
+        {title}
+      </Typography>
+
       <Formik
-        initialValues={initalValues as any}
-        onSubmit={submitHandler}
+        initialValues={initialValues}
+        onSubmit={onSubmit}
         validationSchema={validationSchema}
       >
         <Form>
@@ -50,7 +47,7 @@ function AddTrackForm() {
             <FileInput name="cover" label="Cover" accept="image/jpeg" />
 
             <Button type="submit" variant="brand" size="lg">
-              Add Track
+              Submit
             </Button>
           </VStack>
         </Form>
@@ -59,4 +56,4 @@ function AddTrackForm() {
   );
 }
 
-export default AddTrackForm;
+export default TrackForm;

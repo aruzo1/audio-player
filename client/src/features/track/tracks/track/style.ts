@@ -44,7 +44,7 @@ export const TrackMenu = styled.div<{ visible: boolean }>`
   gap: 0.5rem;
 `;
 
-export const TrackMenuContent = styled.ul`
+export const TrackMenuContent = styled.div`
   display: flex;
   flex-direction: column;
   padding: 0.5rem;

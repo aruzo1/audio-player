@@ -2,17 +2,18 @@ import {
   Controller,
   Post,
   UseInterceptors,
-  MaxFileSizeValidator,
-  FileTypeValidator,
   Body,
   Get,
   Param,
   UploadedFiles,
   BadRequestException,
   NotFoundException,
+  HttpCode,
+  Put,
 } from '@nestjs/common';
 import { FileFieldsInterceptor } from '@nestjs/platform-express';
 import { CreateTrackDTO } from './dto/create-track.dto';
+import { UpdateTrackDTO } from './dto/update-track.dto';
 import { TracksService } from './tracks.service';
 
 @Controller('tracks')
@@ -48,7 +49,30 @@ export class TracksController {
     return track;
   }
 
+  @Put(':id')
+  @HttpCode(204)
+  @UseInterceptors(
+    FileFieldsInterceptor([
+      { name: 'track', maxCount: 1 },
+      { name: 'cover', maxCount: 1 },
+    ]),
+  )
+  update(
+    @UploadedFiles()
+    {
+      track,
+      cover,
+    }: { track?: Express.Multer.File[]; cover?: Express.Multer.File[] },
+    @Param('id') id: number,
+    @Body() updateTrackDTO: UpdateTrackDTO,
+  ) {
+    const validFiles = this.tracksService.validateTrackAndCover(track, cover);
+
+    return this.tracksService.update(id, updateTrackDTO, validFiles);
+  }
+
   @Post()
+  @HttpCode(201)
   @UseInterceptors(
     FileFieldsInterceptor([
       { name: 'track', maxCount: 1 },
@@ -63,21 +87,9 @@ export class TracksController {
     }: { track?: Express.Multer.File[]; cover?: Express.Multer.File[] },
     @Body() createTrackDTO: CreateTrackDTO,
   ) {
-    if (
-      !track[0] ||
-      !cover[0] ||
-      !new MaxFileSizeValidator({ maxSize: 10000000 }).isValid(track[0]) ||
-      !new FileTypeValidator({ fileType: 'audio/mpeg' }).isValid(track[0]) ||
-      !new MaxFileSizeValidator({ maxSize: 500000 }).isValid(cover[0]) ||
-      !new FileTypeValidator({ fileType: 'image/jpeg' }).isValid(cover[0])
-    ) {
-      throw new BadRequestException();
-    }
+    const validFiles = this.tracksService.validateTrackAndCover(track, cover);
 
-    return this.tracksService.create(
-      createTrackDTO,
-      track[0].filename,
-      cover[0].filename,
-    );
+    if (!validFiles.track || !validFiles.cover) throw new BadRequestException();
+    return this.tracksService.create(createTrackDTO, validFiles);
   }
 }

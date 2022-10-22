@@ -13,20 +13,20 @@ export class Track {
 
   @Column()
   @Exclude()
-  trackFilename: string;
+  track: string;
 
   @Expose()
   get trackUrl() {
-    return '/api/media/' + this.trackFilename;
+    return '/api/media/' + this.track;
   }
 
   @Column()
   @Exclude()
-  coverFilename: string;
+  cover: string;
 
   @Expose()
   get coverUrl() {
-    return '/api/media/' + this.coverFilename;
+    return '/api/media/' + this.cover;
   }
 
   @Column()

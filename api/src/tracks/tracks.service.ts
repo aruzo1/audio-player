@@ -1,7 +1,12 @@
-import { Injectable } from '@nestjs/common';
+import {
+  FileTypeValidator,
+  Injectable,
+  MaxFileSizeValidator,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateTrackDTO } from './dto/create-track.dto';
+import { UpdateTrackDTO } from './dto/update-track.dto';
 import { Track } from './track.entity';
 
 @Injectable()
@@ -26,7 +31,7 @@ export class TracksService {
           .subQuery()
           .select('track.createdAt')
           .from(Track, 'track')
-          .where('track.id=:id', { id })
+          .where({ id })
           .getQuery();
 
         return `track.createdAt ${next ? '>' : '<'} ${createdAt}`;
@@ -35,17 +40,54 @@ export class TracksService {
       .getOne();
   }
 
+  async update(
+    id: number,
+    updateTrackDTO: UpdateTrackDTO,
+    files: { track?: string; cover?: string },
+  ) {
+    const result = await this.tracksRepository
+      .createQueryBuilder('track')
+      .update(Track)
+      .set({ ...updateTrackDTO, ...files })
+      .where({ id })
+      .execute();
+
+    return result.affected;
+  }
+
   create(
     createTrackDTO: CreateTrackDTO,
-    trackFilename: string,
-    coverFilename: string,
+    files: { track?: string; cover?: string },
   ) {
     const track = this.tracksRepository.create({
       ...createTrackDTO,
-      trackFilename,
-      coverFilename,
+      ...files,
     });
 
     return this.tracksRepository.save(track);
+  }
+
+  validateTrackAndCover(
+    track?: Express.Multer.File[],
+    cover?: Express.Multer.File[],
+  ) {
+    const result: { track?: string; cover?: string } = {};
+
+    if (
+      track &&
+      new MaxFileSizeValidator({ maxSize: 10000000 }).isValid(track[0]) &&
+      new FileTypeValidator({ fileType: 'audio/mpeg' }).isValid(track[0])
+    ) {
+      result.track = track[0].filename;
+    }
+    if (
+      cover &&
+      new MaxFileSizeValidator({ maxSize: 500000 }).isValid(cover[0]) &&
+      new FileTypeValidator({ fileType: 'image/jpeg' }).isValid(cover[0])
+    ) {
+      result.cover = cover[0].filename;
+    }
+
+    return result;
   }
 }
