@@ -10,8 +10,8 @@ export class GenresService {
     @InjectRepository(Genre) private genresRepository: Repository<Genre>,
   ) {}
 
-  findAll({ take = 10, skip = 0 }: { take?: number; skip?: number }) {
-    return this.genresRepository.find({ take, skip });
+  findAll() {
+    return this.genresRepository.find();
   }
 
   create(createGenreDTO: CreateGenreDTO) {

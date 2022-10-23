@@ -37,9 +37,10 @@ const truncateStyle = css`
 
 const skeletonStyle = css`
   width: 25rem;
-  ${theme.animations.pulse}
+  max-width: 100%;
   border-radius: ${theme.radius.default};
   background: ${theme.colors.neutral[800]};
+  ${theme.animations.pulse}
 
   &:empty::before {
     content: "";

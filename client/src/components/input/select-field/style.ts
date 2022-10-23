@@ -3,7 +3,6 @@ import theme from "styles/theme";
 import arrowDown from "./arrow-down.svg"
 
 export const StyledSelectField = styled.select`
-  width: 25rem;
   padding: 1rem;
   border-radius: ${theme.radius.default};
   outline: none;

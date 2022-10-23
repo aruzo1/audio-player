@@ -3,13 +3,13 @@ import IconButton from "components/icon-button";
 import NextIcon from "./icons/next-icon";
 import PrevIcon from "./icons/prev-icon";
 import useButtons from "./use-buttons";
-import { StyledButtons } from "./style";
+import HStack from "components/h-stack";
 
 function Buttons() {
   const { playing, toggle, playPrevOrNext } = useButtons();
 
   return (
-    <StyledButtons>
+    <HStack gap="1rem">
       <IconButton onClick={() => playPrevOrNext()}>
         <PrevIcon />
       </IconButton>
@@ -19,7 +19,7 @@ function Buttons() {
       <IconButton onClick={() => playPrevOrNext(true)}>
         <NextIcon />
       </IconButton>
-    </StyledButtons>
+    </HStack>
   );
 }
 

@@ -6,7 +6,8 @@ export const TrackCover = styled.div`
   width: 100%;
   aspect-ratio: 1/1;
 
-  &:hover > .track-overlap {
+  &:hover > .track-overlap,
+  &:hover > .track-menu {
     opacity: 1;
   }
 `;

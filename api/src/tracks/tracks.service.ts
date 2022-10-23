@@ -6,7 +6,6 @@ import {
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateTrackDTO } from './dto/create-track.dto';
-import { FindAllQueryTrack } from './dto/find-all-query-track.dto';
 import { UpdateTrackDTO } from './dto/update-track.dto';
 import { Track } from './track.entity';
 
@@ -16,8 +15,8 @@ export class TracksService {
     @InjectRepository(Track) private tracksRepository: Repository<Track>,
   ) {}
 
-  async findAll({ genreId, take = 6, skip = 0 }: FindAllQueryTrack) {
-    return this.tracksRepository.find({ where: { genreId }, take, skip });
+  async findAll() {
+    return this.tracksRepository.find();
   }
 
   findOne(id: number) {

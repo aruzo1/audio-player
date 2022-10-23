@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import useAudio from "features/tracks/audio-context";
 import { ITrack } from "features/tracks/types";
 import useForceUpdate from "hooks/use-force-update";
@@ -8,19 +8,9 @@ import useClickOutside from "hooks/use-click-outside";
 function useTrack(track: ITrack) {
   const { audio, track: playingTrack, changeTrack } = useAudio()!;
   const forceUpdate = useForceUpdate();
-
   const menu = useDisclosure();
   const menuRef = useRef(null);
   useClickOutside(menuRef, menu.close);
-
-  const [hovering, setHovering] = useState(false);
-  const hoveringListener = useMemo(
-    () => ({
-      onMouseEnter: () => setHovering(true),
-      onMouseLeave: () => setHovering(false),
-    }),
-    [setHovering]
-  );
 
   useEffect(() => {
     audio.addEventListener("play", forceUpdate);
@@ -48,8 +38,6 @@ function useTrack(track: ITrack) {
     toggleTrack,
     menu,
     menuRef,
-    hovering,
-    hoveringListener,
   };
 }
 

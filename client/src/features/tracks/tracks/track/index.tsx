@@ -16,19 +16,18 @@ import DotsIcon from "./dots-icon";
 import useTrack from "./use-track";
 
 function Track({ track }: { track: ITrack }) {
-  const { playing, toggleTrack, menu, menuRef, hovering, hoveringListener } =
-    useTrack(track);
+  const { playing, toggleTrack, menu, menuRef } = useTrack(track);
 
   return (
     <li>
-      <TrackCover {...hoveringListener}>
+      <TrackCover>
         <TrackImg src={track.coverUrl} alt={`${track.title} cover`} />
 
         <TrackOverlap className="track-overlap" playing={playing}>
           <PlayButton variant="brand" playing={playing} onClick={toggleTrack} />
         </TrackOverlap>
 
-        <TrackMenu visible={menu.visible || hovering} ref={menuRef}>
+        <TrackMenu className="track-menu" visible={menu.visible} ref={menuRef}>
           <Disclosure disclosure={menu}>
             <Disclosure.Button>
               <Button size="sm">

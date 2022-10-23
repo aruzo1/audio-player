@@ -38,7 +38,7 @@ function Form(props: Props) {
         validationSchema={validationSchema}
         onSubmit={onSubmit}
       >
-        <FormikForm>
+        <FormikForm style={{ maxWidth: "100%" }}>
           <VStack gap="1rem">
             {children}
 
