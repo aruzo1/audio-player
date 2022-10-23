@@ -1,7 +1,19 @@
-import { IsNumberString, IsOptional } from 'class-validator';
+import { Type } from 'class-transformer';
+import { IsNumber, IsNumberString, IsOptional } from 'class-validator';
 
 export class FindAllQueryTrack {
   @IsOptional()
-  @IsNumberString()
+  @Type(() => Number)
+  @IsNumber()
   genreId?: number;
+
+  @IsOptional()
+  @Type(() => Number)
+  @IsNumber()
+  take?: number;
+
+  @IsOptional()
+  @Type(() => Number)
+  @IsNumber()
+  skip?: number;
 }

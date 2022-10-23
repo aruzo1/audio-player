@@ -26,7 +26,7 @@ const validationSchema = yup.object().shape({
 
 function AddTrackPage() {
   const navigate = useNavigate();
-  const { value: genres } = useQuery<IGenre[]>("genres");
+  const [genres] = useQuery<IGenre[]>("genres");
 
   function submitHandler(values: ICrateTrack) {
     tracksService.create(values).then(() => navigate("/"));

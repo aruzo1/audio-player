@@ -16,8 +16,8 @@ export class TracksService {
     @InjectRepository(Track) private tracksRepository: Repository<Track>,
   ) {}
 
-  async findAll({ genreId }: FindAllQueryTrack) {
-    return this.tracksRepository.find({ where: { genreId } });
+  async findAll({ genreId, take = 6, skip = 0 }: FindAllQueryTrack) {
+    return this.tracksRepository.find({ where: { genreId }, take, skip });
   }
 
   findOne(id: number) {

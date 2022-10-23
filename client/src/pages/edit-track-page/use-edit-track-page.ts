@@ -14,8 +14,8 @@ const validationSchema = yup.object().shape({
 function useEditTrackPage() {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { value: genres } = useQuery<IGenre[]>("genres");
-  const { value: track } = useQuery<ITrack>(`tracks/${id}`);
+  const [genres] = useQuery<IGenre[]>("genres");
+  const [track] = useQuery<ITrack>(`tracks/${id}`);
 
   function submitHandler(values: IUpdateTrack) {
     tracksService.update(id!, values).then(() => navigate("/"));

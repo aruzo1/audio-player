@@ -1,18 +1,15 @@
 import { ITrack } from "../types";
 import Track from "./track";
-import { StyledTracks } from "./style";
 import TrackSkeleton from "./track-skeleton";
-import useQuery from "hooks/use-query";
+import { StyledTracks } from "./style";
 
-function Tracks() {
-  const { value: tracks, loading } = useQuery<ITrack[]>("tracks");
-
+function Tracks({ tracks }: { tracks?: ITrack[] | null }) {
   return (
     <StyledTracks>
       {tracks?.map((track) => (
         <Track key={track.id} track={track} />
       ))}
-      {loading &&
+      {tracks === undefined &&
         Array.from({ length: 6 }, (_, i) => <TrackSkeleton key={i} />)}
     </StyledTracks>
   );

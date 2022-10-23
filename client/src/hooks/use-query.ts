@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-function useQuery<T>(url: string) {
+function useQuery<T>(url: string): [T | null | undefined, boolean] {
   const [value, setValue] = useState<T | null>();
   const [error, setError] = useState(false);
 
@@ -15,7 +15,7 @@ function useQuery<T>(url: string) {
       });
   }, [url, setValue]);
 
-  return { value, loading: value === undefined, error };
+  return [value, error];
 }
 
 export default useQuery;
