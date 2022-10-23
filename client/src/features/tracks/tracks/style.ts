@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import theme from "styles/theme";
 
-export const StyledTracks = styled.ul`
+export const TracksList = styled.ul`
   display: grid;
   width: 100%;
   grid-template-columns: repeat(6, 1fr);

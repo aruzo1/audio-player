@@ -3,13 +3,7 @@ import styled from "styled-components";
 import theme from "styles/theme";
 
 const StyledTrackSkeleton = styled(VStack)`
-  animation: pulse 2s ease-in-out infinite;
-
-  @keyframes pulse {
-    50% {
-      opacity: 0.5;
-    }
-  }
+  ${theme.animations.pulse}
 `;
 
 const TrackSkeltonImg = styled.div`
@@ -21,14 +15,14 @@ const TrackSkeltonImg = styled.div`
 
 const TrackSkeletonTitle = styled.div`
   width: 75%;
-  height: 1.5rem;
+  height: 1.25rem;
   border-radius: ${theme.radius.default};
   background: ${theme.colors.neutral[800]};
 `;
 
 const TrackSkeletonAuthor = styled.div`
   width: 50%;
-  height: 1rem;
+  height: 15px;
   border-radius: ${theme.radius.default};
   background: ${theme.colors.neutral[800]};
 `;

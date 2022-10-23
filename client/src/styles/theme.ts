@@ -1,4 +1,12 @@
-export default {
+import { css, keyframes } from "styled-components";
+
+const pulseKeyframes = keyframes`
+50% {
+  opacity: 0.5;
+}
+`;
+
+const theme = {
   colors: {
     brand: {
       50: "#FFF1F2",
@@ -48,5 +56,12 @@ export default {
     default: "0.25rem",
     full: "9999px",
   },
-  transition: "0.1s ease-in-out",
+  transition: "0.15s ease-in-out",
+  animations: {
+    pulse: css`
+      animation: ${pulseKeyframes} 2s infinite;
+    `,
+  },
 };
+
+export default theme;

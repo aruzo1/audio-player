@@ -1,17 +1,29 @@
+import Typography from "components/typography";
+import VStack from "components/v-stack";
 import { ITrack } from "../types";
 import Track from "./track";
 import TrackSkeleton from "./track-skeleton";
-import { StyledTracks } from "./style";
+import { TracksList } from "./style";
 
-function Tracks({ tracks }: { tracks?: ITrack[] | null }) {
+interface Props {
+  title?: string;
+  tracks?: ITrack[] | null;
+  loading: boolean;
+}
+
+function Tracks({ title, tracks, loading }: Props) {
   return (
-    <StyledTracks>
-      {tracks?.map((track) => (
-        <Track key={track.id} track={track} />
-      ))}
-      {tracks === undefined &&
-        Array.from({ length: 6 }, (_, i) => <TrackSkeleton key={i} />)}
-    </StyledTracks>
+    <VStack gap="1rem">
+      <Typography as="h2" variant="h1" skeleton={loading}>
+        {!loading && title}
+      </Typography>
+
+      <TracksList>
+        {loading
+          ? Array.from({ length: 6 }, (_, i) => <TrackSkeleton key={i} />)
+          : tracks?.map((track) => <Track key={track.id} track={track} />)}
+      </TracksList>
+    </VStack>
   );
 }
 
