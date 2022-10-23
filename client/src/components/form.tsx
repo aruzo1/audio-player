@@ -1,29 +1,17 @@
 import { ObjectSchema } from "yup";
-import { ComponentProps, ReactNode, RefObject } from "react";
+import { ReactNode } from "react";
 import { Formik, Form as FormikForm } from "formik";
 import VStack from "components/v-stack";
 import Typography from "components/typography";
 import Button from "components/button";
-import Input from "./input";
 import HStack from "./h-stack";
-
-interface IFormInput extends ComponentProps<"input"> {
-  label: string;
-  type?: "text" | "file";
-  required?: boolean;
-  ref?: RefObject<HTMLInputElement>;
-}
-
-export interface IFormInputs {
-  [key: string]: IFormInput;
-}
 
 interface Props {
   title: string;
   initialValues: { [key: string]: any };
   validationSchema: ObjectSchema<any>;
   onSubmit: (values: any) => void;
-  inputs: IFormInputs;
+  children: ReactNode;
   buttonText: string;
   extraButton?: ReactNode;
 }
@@ -34,7 +22,7 @@ function Form(props: Props) {
     initialValues,
     validationSchema,
     onSubmit,
-    inputs,
+    children,
     buttonText,
     extraButton,
   } = props;
@@ -52,11 +40,7 @@ function Form(props: Props) {
       >
         <FormikForm>
           <VStack gap="1rem">
-            {Object.entries(inputs).map(
-              ([name, { type = "text", ...input }], i) => (
-                <Input key={i} {...input} name={name} type={type} />
-              )
-            )}
+            {children}
 
             {extraButton ? (
               <HStack gap="1rem">

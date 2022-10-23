@@ -1,6 +1,6 @@
 import { FormEvent, useEffect } from "react";
 import useForceUpdate from "hooks/use-force-update";
-import useAudio from "features/track/audio-context";
+import useAudio from "features/tracks/audio-context";
 
 function useProgressBar() {
   const forceUpdate = useForceUpdate();

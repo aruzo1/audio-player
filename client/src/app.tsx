@@ -1,7 +1,7 @@
-import { GlobalStyle } from "styles/global";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { AudioProvider } from "features/track/audio-context";
-import ControlBar from "features/track/control-bar";
+import { GlobalStyle } from "styles/global";
+import { AudioProvider } from "features/tracks/audio-context";
+import ControlBar from "features/tracks/control-bar";
 import HomePage from "pages/home-page";
 import AddTrackPage from "pages/add-track-page";
 import EditTrackPage from "pages/edit-track-page";

@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import useAudio from "features/track/audio-context";
-import { ITrack } from "features/track/types";
+import useAudio from "features/tracks/audio-context";
+import { ITrack } from "features/tracks/types";
 import useForceUpdate from "hooks/use-force-update";
 import useDisclosure from "components/disclosure/use-disclosure";
 import useClickOutside from "hooks/use-click-outside";

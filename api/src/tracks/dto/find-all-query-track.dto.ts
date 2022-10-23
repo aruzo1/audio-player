@@ -1,7 +1,7 @@
 import { IsNumberString, IsOptional } from 'class-validator';
 
-export class FindAllTrackQueryDTO {
+export class FindAllQueryTrack {
   @IsOptional()
   @IsNumberString()
-  category?: number;
+  genreId?: number;
 }

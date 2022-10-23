@@ -6,6 +6,7 @@ import {
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateTrackDTO } from './dto/create-track.dto';
+import { FindAllQueryTrack } from './dto/find-all-query-track.dto';
 import { UpdateTrackDTO } from './dto/update-track.dto';
 import { Track } from './track.entity';
 
@@ -15,18 +16,8 @@ export class TracksService {
     @InjectRepository(Track) private tracksRepository: Repository<Track>,
   ) {}
 
-  async findAll(category?: number) {
-    const query = this.tracksRepository.createQueryBuilder('track');
-
-    if (category) {
-      query
-        .distinct(true)
-        .innerJoin('track.categories', 'category', 'category.id=:id', {
-          id: category,
-        });
-    }
-
-    return query.getMany();
+  async findAll({ genreId }: FindAllQueryTrack) {
+    return this.tracksRepository.find({ where: { genreId } });
   }
 
   findOne(id: number) {

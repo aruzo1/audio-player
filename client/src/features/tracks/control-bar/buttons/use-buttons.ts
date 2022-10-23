@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import useForceUpdate from "hooks/use-force-update";
-import useAudio from "features/track/audio-context";
-import { tracksService } from "features/track/service";
+import useAudio from "features/tracks/audio-context";
+import { tracksService } from "features/tracks/service";
 
 function useButtons() {
   const forceUpdate = useForceUpdate();

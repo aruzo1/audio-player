@@ -1,5 +1,5 @@
 import Typography from "components/typography";
-import { ITrack } from "features/track/types";
+import { ITrack } from "features/tracks/types";
 import { TrackCover, TrackImg, TrackInfo, StyledTrack } from "./style";
 
 function Track({ track }: { track: ITrack }) {

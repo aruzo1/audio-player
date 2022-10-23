@@ -1,15 +1,19 @@
 import * as yup from "yup";
 import { useNavigate } from "react-router-dom";
+import useQuery from "hooks/use-query";
 import Container from "components/container";
-import Form, { IFormInputs } from "components/form";
-import { tracksService } from "features/track/service";
-import { ICrateTrack } from "features/track/types";
+import Form from "components/form";
+import Input from "components/input";
+import { IGenre } from "features/genres/types";
+import { ICrateTrack } from "features/tracks/types";
+import { tracksService } from "features/tracks/service";
 
 const initialValues = {
   title: "",
   author: "",
   track: null,
   cover: null,
+  genreId: "",
 };
 
 const validationSchema = yup.object().shape({
@@ -17,23 +21,12 @@ const validationSchema = yup.object().shape({
   author: yup.string().required(),
   track: yup.mixed().required(),
   cover: yup.mixed().required(),
+  genreId: yup.string().required().label("Genre"),
 });
-
-const inputs: IFormInputs = {
-  title: {
-    label: "Title",
-    placeholder: "Rockstar, As It Was, Sharks...",
-  },
-  author: {
-    label: "Author",
-    placeholder: "Imagine Dragons, Post Malone...",
-  },
-  track: { label: "Track", type: "file", accept: "audio/mpeg" },
-  cover: { label: "Cover", type: "file", accept: "image/jpeg" },
-};
 
 function AddTrackPage() {
   const navigate = useNavigate();
+  const { value: genres } = useQuery<IGenre[]>("genres");
 
   function submitHandler(values: ICrateTrack) {
     tracksService.create(values).then(() => navigate("/"));
@@ -46,9 +39,33 @@ function AddTrackPage() {
         initialValues={initialValues}
         validationSchema={validationSchema}
         onSubmit={submitHandler}
-        inputs={inputs}
         buttonText="Add"
-      />
+      >
+        <Input
+          type="text"
+          name="title"
+          label="Title"
+          placeholder="Rockstar, As It Was, Sharks..."
+        />
+
+        <Input
+          type="text"
+          name="author"
+          label="Author"
+          placeholder="Imagine Dragons, Post Malone..."
+        />
+
+        <Input type="file" name="track" label="Track" accept="audio/mpeg" />
+
+        <Input type="file" name="cover" label="Cover" accept="image/jpeg" />
+
+        <Input
+          type="select"
+          name="genreId"
+          label="Genre"
+          options={genres?.map(({ id, name }) => ({ value: id, name }))}
+        />
+      </Form>
     </Container>
   );
 }

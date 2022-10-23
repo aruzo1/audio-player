@@ -1,5 +1,6 @@
 export interface ITrack {
   id: number;
+  genreId: number;
   title: string;
   author: string;
   trackUrl: string;

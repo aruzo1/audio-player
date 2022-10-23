@@ -1,12 +1,11 @@
-import usePromise from "hooks/use-promise";
-import { tracksService } from "../service";
 import { ITrack } from "../types";
 import Track from "./track";
 import { StyledTracks } from "./style";
 import TrackSkeleton from "./track-skeleton";
+import useQuery from "hooks/use-query";
 
 function Tracks() {
-  const { value: tracks, loading } = usePromise<ITrack[]>(tracksService.findAll);
+  const { value: tracks, loading } = useQuery<ITrack[]>("tracks");
 
   return (
     <StyledTracks>

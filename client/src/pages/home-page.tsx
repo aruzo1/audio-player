@@ -3,7 +3,7 @@ import Button from "components/button";
 import Typography from "components/typography";
 import VStack from "components/v-stack";
 import Container from "components/container";
-import Tracks from "features/track/tracks";
+import Tracks from "features/tracks/tracks";
 
 function HomePage() {
   return (
