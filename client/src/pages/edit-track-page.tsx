@@ -2,8 +2,8 @@ import * as yup from "yup";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Container from "components/container";
-import TrackForm from "features/track/track-form";
-import { IUpdateTrack, ITrackFormInitialValues } from "features/track/types";
+import Form, { IFormInputs } from "components/form";
+import { IUpdateTrack } from "features/track/types";
 import { tracksService } from "features/track/service";
 import Button from "components/button";
 
@@ -12,10 +12,35 @@ const validationSchema = yup.object().shape({
   author: yup.string().required(),
 });
 
+const inputs: IFormInputs = {
+  title: {
+    label: "Title",
+    placeholder: "Rockstar, As It Was, Sharks...",
+  },
+  author: {
+    label: "Author",
+    placeholder: "Imagine Dragons, Post Malone...",
+  },
+  track: {
+    label: "Track",
+    type: "file",
+    accept: "audio/mpeg",
+    required: false,
+  },
+  cover: {
+    label: "Cover",
+    type: "file",
+    accept: "image/jpeg",
+    required: false,
+  },
+};
+
 function EditTrackPage() {
   const { id } = useParams();
   const navigate = useNavigate();
-  const [initialValues, setInitialValues] = useState<ITrackFormInitialValues>();
+  const [initialValues, setInitialValues] = useState<{
+    [key: string]: any;
+  }>();
 
   useEffect(() => {
     tracksService
@@ -36,14 +61,15 @@ function EditTrackPage() {
 
   return (
     <Container>
-      <TrackForm
+      <Form
         title="Edit Track"
         initialValues={initialValues}
         validationSchema={validationSchema}
         onSubmit={submitHandler}
+        inputs={inputs}
         buttonText="Edit"
         extraButton={
-          <Button size="lg" onClick={deleteHandler}>
+          <Button type="button" size="lg" onClick={deleteHandler}>
             Delete
           </Button>
         }

@@ -22,7 +22,7 @@ const variants = {
     font-weight: 300;
     font-size: 14px;
   `,
-  error: css`
+  danger: css`
     color: ${theme.colors.danger[600]};
     font-weight: 300;
     font-size: 14px;

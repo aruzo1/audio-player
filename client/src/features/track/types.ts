@@ -17,10 +17,3 @@ export interface IUpdateTrack {
   title: string;
   author: string;
 }
-
-export interface ITrackFormInitialValues {
-  title: string;
-  author: string;
-  track?: File;
-  cover?: File;
-}

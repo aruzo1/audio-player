@@ -1,29 +1,40 @@
 import { ObjectSchema } from "yup";
-import { ReactNode } from "react";
-import { Formik, Form } from "formik";
+import { ComponentProps, ReactNode, RefObject } from "react";
+import { Formik, Form as FormikForm } from "formik";
 import VStack from "components/v-stack";
-import TextInput from "components/text-input";
-import FileInput from "components/file-input";
 import Typography from "components/typography";
 import Button from "components/button";
-import { ITrackFormInitialValues } from "./types";
-import HStack from "components/h-stack";
+import Input from "./input";
+import HStack from "./h-stack";
+
+interface IFormInput extends ComponentProps<"input"> {
+  label: string;
+  type?: "text" | "file";
+  required?: boolean;
+  ref?: RefObject<HTMLInputElement>;
+}
+
+export interface IFormInputs {
+  [key: string]: IFormInput;
+}
 
 interface Props {
   title: string;
-  onSubmit: (values: any) => void;
-  initialValues: ITrackFormInitialValues;
+  initialValues: { [key: string]: any };
   validationSchema: ObjectSchema<any>;
+  onSubmit: (values: any) => void;
+  inputs: IFormInputs;
   buttonText: string;
   extraButton?: ReactNode;
 }
 
-function TrackForm(props: Props) {
+function Form(props: Props) {
   const {
     title,
-    onSubmit,
     initialValues,
     validationSchema,
+    onSubmit,
+    inputs,
     buttonText,
     extraButton,
   } = props;
@@ -36,26 +47,16 @@ function TrackForm(props: Props) {
 
       <Formik
         initialValues={initialValues}
-        onSubmit={onSubmit}
         validationSchema={validationSchema}
+        onSubmit={onSubmit}
       >
-        <Form>
+        <FormikForm>
           <VStack gap="1rem">
-            <TextInput
-              name="title"
-              label="Title"
-              placeholder="Starboy, As It Was, Rockstar..."
-            />
-
-            <TextInput
-              name="author"
-              label="Author"
-              placeholder="Imagine Dragons, Post Malone..."
-            />
-
-            <FileInput name="track" label="Track" accept="audio/mpeg" />
-
-            <FileInput name="cover" label="Cover" accept="image/jpeg" />
+            {Object.entries(inputs).map(
+              ([name, { type = "text", ...input }], i) => (
+                <Input key={i} {...input} name={name} type={type} />
+              )
+            )}
 
             {extraButton ? (
               <HStack gap="1rem">
@@ -70,10 +71,10 @@ function TrackForm(props: Props) {
               </Button>
             )}
           </VStack>
-        </Form>
+        </FormikForm>
       </Formik>
     </VStack>
   );
 }
 
-export default TrackForm;
+export default Form;

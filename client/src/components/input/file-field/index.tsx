@@ -1,15 +1,13 @@
 import { ComponentProps, FormEvent, useState } from "react";
 import { Field, FieldProps, useFormikContext } from "formik";
 import Button from "components/button";
-import Input from "components/input";
 import UploadIcon from "./upload-icon";
 
 interface Props extends ComponentProps<"input"> {
-  label: string;
   name: string;
 }
 
-function FileInput({ label, name, ...props }: Props) {
+function FileField({ name, ...props }: Props) {
   const { setFieldValue } = useFormikContext();
   const [text, setText] = useState("Choose File");
 
@@ -23,7 +21,7 @@ function FileInput({ label, name, ...props }: Props) {
   }
 
   return (
-    <Input name={name} label={label}>
+    <>
       <Button as="label" htmlFor={name}>
         <UploadIcon /> {text}
       </Button>
@@ -41,8 +39,8 @@ function FileInput({ label, name, ...props }: Props) {
           />
         )}
       </Field>
-    </Input>
+    </>
   );
 }
 
-export default FileInput;
+export default FileField;
