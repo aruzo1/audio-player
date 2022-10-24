@@ -8,20 +8,19 @@ import { TracksList } from "./style";
 interface Props {
   title?: string;
   tracks?: ITrack[] | null;
-  loading: boolean;
 }
 
 function Tracks({ title, tracks, loading }: Props) {
   return (
     <VStack gap="1rem">
       <Typography as="h2" variant="h1" skeleton={loading}>
-        {!loading && title}
+        {!tracks && title}
       </Typography>
 
       <TracksList>
-        {loading
-          ? Array.from({ length: 6 }, (_, i) => <TrackSkeleton key={i} />)
-          : tracks?.map((track) => <Track key={track.id} track={track} />)}
+        {tracks
+          ? tracks.map((track) => <Track key={track.id} track={track} />)}
+          : Array.from({ length: 6 }, (_, i) => <TrackSkeleton key={i} />)
       </TracksList>
     </VStack>
   );
