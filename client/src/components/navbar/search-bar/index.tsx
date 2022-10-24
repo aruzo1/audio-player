@@ -16,10 +16,11 @@ function SearchBar() {
     e.preventDefault();
 
     navigate(`/search?term=${term}`);
+    setTerm("");
   }
 
   return (
-    <HStack as="form" align="unset" onSubmit={submitHandler}>
+    <HStack as="form" align="initial" onSubmit={submitHandler}>
       <SearchBarInput
         value={term}
         onChange={termHandler}

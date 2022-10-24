@@ -1,7 +1,14 @@
 import styled from "styled-components";
 
-const HStack = styled.div<{ gap?: string; align?: "center" | "unset" }>`
+interface Props {
+  gap?: string;
+  align?: "center" | "initial";
+  justify?: "space-between";
+}
+
+const HStack = styled.div<Props>`
   display: flex;
+  ${({ justify }) => justify && `justify-content: ${justify};`}
   align-items: ${({ align }) => (align ? align : "center")};
   gap: ${({ gap }) => gap};
 `;

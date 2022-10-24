@@ -4,7 +4,6 @@ import useQuery from "hooks/use-query";
 import Container from "components/container";
 import Tracks from "features/tracks/tracks";
 import { ITrack } from "features/tracks/types";
-import Typography from "components/typography";
 
 function SearchPage() {
   const [searchParams] = useSearchParams();
@@ -15,8 +14,6 @@ function SearchPage() {
 
   return (
     <Container>
-      <Typography as="h1" variant="h1">Results for </Typography>
-
       <Tracks title="Tracks" tracks={tracks} />
     </Container>
   );

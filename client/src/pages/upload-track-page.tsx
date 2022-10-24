@@ -24,7 +24,7 @@ const validationSchema = yup.object().shape({
   genreId: yup.string().required().label("Genre"),
 });
 
-function AddTrackPage() {
+function UploadTrackPage() {
   const navigate = useNavigate();
   const [genres] = useQuery<IGenre[]>("genres");
 
@@ -35,11 +35,11 @@ function AddTrackPage() {
   return (
     <Container>
       <Form
-        title="Add Track"
+        title="Upload Track"
         initialValues={initialValues}
         validationSchema={validationSchema}
         onSubmit={submitHandler}
-        buttonText="Add"
+        buttonText="Upload"
       >
         <Input
           type="text"
@@ -70,4 +70,4 @@ function AddTrackPage() {
   );
 }
 
-export default AddTrackPage;
+export default UploadTrackPage;

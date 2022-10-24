@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Layout = styled.div`
   display: grid;
   height: 100vh;
-  grid-template-rows: 1fr auto;
+  grid-template-rows: auto 1fr auto;
   overflow-y: hidden;
 `;
 

@@ -5,6 +5,7 @@ export const GlobalStyle = createGlobalStyle`
   html {
     color: #fff;
     font-family: "Plus Jakarta Sans", sans-serif;
+    font-weight: 300;
     background: ${theme.colors.neutral[900]};
   }
 
@@ -16,11 +17,6 @@ export const GlobalStyle = createGlobalStyle`
   ::selection {
     color: #fff;
     background-color: ${theme.colors.brand[600]};
-  }
-
-  ::placeholder {
-    color: ${theme.colors.neutral[500]};
-    font-weight: 300;
   }
 
   // -----------------------
