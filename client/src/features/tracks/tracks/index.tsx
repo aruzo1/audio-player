@@ -10,17 +10,19 @@ interface Props {
   tracks?: ITrack[] | null;
 }
 
-function Tracks({ title, tracks, loading }: Props) {
+function Tracks({ title, tracks }: Props) {
+  if (tracks?.length === 0 || tracks === null) return null;
+
   return (
     <VStack gap="1rem">
-      <Typography as="h2" variant="h1" skeleton={loading}>
-        {!tracks && title}
+      <Typography as="h2" variant="h1" skeleton={Boolean(!tracks)}>
+        {tracks && title}
       </Typography>
 
       <TracksList>
         {tracks
-          ? tracks.map((track) => <Track key={track.id} track={track} />)}
-          : Array.from({ length: 6 }, (_, i) => <TrackSkeleton key={i} />)
+          ? tracks.map((track) => <Track key={track.id} track={track} />)
+          : Array.from({ length: 6 }, (_, i) => <TrackSkeleton key={i} />)}
       </TracksList>
     </VStack>
   );

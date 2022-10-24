@@ -11,6 +11,7 @@ import {
   HttpCode,
   Put,
   Delete,
+  Query,
 } from '@nestjs/common';
 import { FileFieldsInterceptor } from '@nestjs/platform-express';
 import { CreateTrackDTO } from './dto/create-track.dto';
@@ -22,8 +23,8 @@ export class TracksController {
   constructor(private tracksService: TracksService) {}
 
   @Get()
-  findAll() {
-    return this.tracksService.findAll();
+  findAll(@Query() query) {
+    return this.tracksService.findAll(query);
   }
 
   @Get(':id')

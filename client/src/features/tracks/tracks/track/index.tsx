@@ -37,7 +37,7 @@ function Track({ track }: { track: ITrack }) {
 
             <Disclosure.Content>
               <TrackMenuContent>
-                <Link to={`tracks/edit/${track.id}`}>
+                <Link to={`/tracks/edit/${track.id}`}>
                   <Button full={true}>Edit</Button>
                 </Link>
               </TrackMenuContent>

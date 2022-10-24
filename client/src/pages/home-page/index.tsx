@@ -3,6 +3,7 @@ import useQuery from "hooks/use-query";
 import Button from "components/button";
 import VStack from "components/v-stack";
 import Container from "components/container";
+import SearchBar from "pages/home-page/search-bar";
 import Tracks from "features/tracks/tracks";
 import { ITrack } from "features/tracks/types";
 
@@ -15,6 +16,7 @@ function HomePage() {
         <Link to="/tracks/add">
           <Button variant="brand">Add Track</Button>
         </Link>
+        <SearchBar />
 
         <Tracks title="Latest Tracks" tracks={tracks} />
       </VStack>

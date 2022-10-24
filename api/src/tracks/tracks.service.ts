@@ -4,7 +4,7 @@ import {
   MaxFileSizeValidator,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Like, Repository } from 'typeorm';
 import { CreateTrackDTO } from './dto/create-track.dto';
 import { UpdateTrackDTO } from './dto/update-track.dto';
 import { Track } from './track.entity';
@@ -15,8 +15,14 @@ export class TracksService {
     @InjectRepository(Track) private tracksRepository: Repository<Track>,
   ) {}
 
-  async findAll() {
-    return this.tracksRepository.find();
+  async findAll({ term }: { term?: string }) {
+    const query = this.tracksRepository.createQueryBuilder('track');
+
+    if (term) {
+      query.where("lower(title) LIKE lower('%'||:term||'%')", { term });
+    }
+
+    return query.getMany();
   }
 
   findOne(id: number) {

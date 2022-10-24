@@ -5,6 +5,7 @@ import ControlBar from "features/tracks/control-bar";
 import HomePage from "pages/home-page";
 import AddTrackPage from "pages/add-track-page";
 import EditTrackPage from "pages/edit-track-page";
+import SearchPage from "pages/search-page";
 import { Layout, Main } from "styles/layout";
 
 const router = createBrowserRouter([
@@ -16,6 +17,7 @@ const router = createBrowserRouter([
       { path: "edit/:id", element: <EditTrackPage /> },
     ],
   },
+  { path: "/search", element: <SearchPage /> },
 ]);
 
 function App() {
