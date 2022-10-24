@@ -12,9 +12,11 @@ export interface ICrateTrack {
   author: string;
   track: File;
   cover: File;
+  genreId: number;
 }
 
 export interface IUpdateTrack {
   title: string;
   author: string;
+  genreId: number;
 }
