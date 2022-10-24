@@ -7,7 +7,7 @@ import Tracks from "features/tracks/tracks";
 import { ITrack } from "features/tracks/types";
 
 function HomePage() {
-  const [tracks, { loading: loadingTracks }] = useQuery<ITrack[]>("tracks");
+  const [tracks] = useQuery<ITrack[]>("tracks");
 
   return (
     <Container>
@@ -16,7 +16,7 @@ function HomePage() {
           <Button variant="brand">Add Track</Button>
         </Link>
 
-        <Tracks title="Latest Tracks" tracks={tracks} loading={loadingTracks} />
+        <Tracks title="Latest Tracks" tracks={tracks} />
       </VStack>
     </Container>
   );
