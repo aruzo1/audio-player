@@ -4,7 +4,7 @@ import {
   MaxFileSizeValidator,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Like, Repository } from 'typeorm';
+import { Repository } from 'typeorm';
 import { CreateTrackDTO } from './dto/create-track.dto';
 import { UpdateTrackDTO } from './dto/update-track.dto';
 import { Track } from './track.entity';
@@ -19,7 +19,12 @@ export class TracksService {
     const query = this.tracksRepository.createQueryBuilder('track');
 
     if (term) {
-      query.where("lower(title) LIKE lower('%'||:term||'%')", { term });
+      query
+        .innerJoin('track.genre', 'genre')
+        .where(
+          "to_tsvector(title || ' ' || author || ' ' || genre.name) @@ to_tsquery(:term || ':*')",
+          { term },
+        );
     }
 
     return query.getMany();
