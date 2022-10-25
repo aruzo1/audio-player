@@ -22,7 +22,7 @@ const variants = {
     font-weight: 300;
     font-size: 14px;
   `,
-  error: css`
+  danger: css`
     color: ${theme.colors.danger[600]};
     font-weight: 300;
     font-size: 14px;
@@ -35,15 +35,30 @@ const truncateStyle = css`
   white-space: nowrap;
 `;
 
+const skeletonStyle = css`
+  width: 25rem;
+  max-width: 100%;
+  border-radius: ${theme.radius.default};
+  background: ${theme.colors.neutral[800]};
+  ${theme.animations.pulse}
+
+  &:empty::before {
+    content: "";
+    display: inline-block;
+  }
+`;
+
 interface Props {
   variant?: keyof typeof variants;
   truncate?: boolean;
+  skeleton?: boolean;
 }
 
 const Typography = styled.p<Props>`
   font-weight: 600;
   ${({ variant }) => variants[variant || "p"]}
   ${({ truncate }) => truncate && truncateStyle}
+  ${({ skeleton }) => skeleton && skeletonStyle}
 `;
 
 export default Typography;

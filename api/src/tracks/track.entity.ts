@@ -1,8 +1,11 @@
 import { Exclude, Expose } from 'class-transformer';
+import { Genre } from 'src/genres/genre.entity';
 import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinColumn,
+  ManyToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
@@ -10,6 +13,9 @@ import {
 export class Track {
   @PrimaryGeneratedColumn()
   id: number;
+
+  @Column()
+  genreId: number;
 
   @Column()
   @Exclude()
@@ -37,4 +43,8 @@ export class Track {
 
   @CreateDateColumn()
   createdAt: Date;
+
+  @ManyToOne(() => Genre, (genre) => genre.tracks)
+  @JoinColumn()
+  genre: Genre;
 }

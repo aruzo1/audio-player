@@ -52,6 +52,10 @@ const Button = styled.button<Props>`
   transition: background-color ${theme.transition};
   gap: 0.5rem;
 
+  &:disabled {
+    cursor: not-allowed;
+  }
+
   & > svg {
     min-width: max-content;
   }
