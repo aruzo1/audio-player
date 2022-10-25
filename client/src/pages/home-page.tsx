@@ -24,7 +24,7 @@ function HomePage() {
         <Tracks title="Latest Tracks" tracks={tracks} />
 
         {genres
-          ? genres.map((genre) => <GenreTracks genre={genre} />)
+          ? genres.map((genre) => <GenreTracks key={genre.id} genre={genre} />)
           : Array.from({ length: numberOfTracks }, (_, i) => (
               <GenreTracks key={i} genre={undefined} />
             ))}

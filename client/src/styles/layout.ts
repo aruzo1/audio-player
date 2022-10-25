@@ -8,6 +8,6 @@ export const Layout = styled.div`
 `;
 
 export const Main = styled.div`
-  overflow-y: overlay;
+  overflow-y: scroll;
   padding: 2rem 0;
 `;

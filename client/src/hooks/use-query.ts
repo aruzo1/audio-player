@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-function useQuery<T>(url: string, wait?: boolean) {
+function useQuery<T>(url?: string, wait?: boolean) {
   const [value, setValue] = useState<T | null>();
   const [error, setError] = useState(false);
   const [invoke, setInvoke] = useState(false);
 
   useEffect(() => {
-    if (!wait || invoke) {
+    if (url && (!wait || invoke)) {
       axios
         .get(url)
         .then((res) => setValue(res.data))

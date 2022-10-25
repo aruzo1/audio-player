@@ -5,10 +5,7 @@ import Tracks from "features/tracks/tracks";
 import { IGenre } from "features/genres/types";
 
 function GenreTracks({ genre }: { genre?: IGenre }) {
-  const url = useMemo(
-    () => (genre ? `tracks?genreId=${genre?.id}` : ""),
-    [genre]
-  );
+  const url = useMemo(() => genre && `tracks?genreId=${genre?.id}`, [genre]);
   const [tracks, { query: queryTracks }] = useQuery<ITrack[]>(url);
 
   useEffect(() => {

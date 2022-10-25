@@ -1,9 +1,9 @@
-import styled from "styled-components";
+import styled, { CSSProperties } from "styled-components";
 
 interface Props {
   gap?: string;
-  align?: "center" | "initial";
-  justify?: "space-between";
+  justify?: CSSProperties["justifyContent"];
+  align?: CSSProperties["alignItems"];
 }
 
 const HStack = styled.div<Props>`
