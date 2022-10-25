@@ -15,6 +15,7 @@ import {
 } from '@nestjs/common';
 import { FileFieldsInterceptor } from '@nestjs/platform-express';
 import { CreateTrackDTO } from './dto/create-track.dto';
+import { FilterTrackDTO } from './dto/filter-track.dto';
 import { UpdateTrackDTO } from './dto/update-track.dto';
 import { TracksService } from './tracks.service';
 
@@ -23,7 +24,7 @@ export class TracksController {
   constructor(private tracksService: TracksService) {}
 
   @Get()
-  findAll(@Query() query) {
+  findAll(@Query() query : FilterTrackDTO) {
     return this.tracksService.findAll(query);
   }
 

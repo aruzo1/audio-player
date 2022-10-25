@@ -1,14 +1,15 @@
-import { Controller, Body, Post, Get } from '@nestjs/common';
+import { Controller, Body, Post, Get, Query } from '@nestjs/common';
 import { GenresService } from './genres.service';
 import { CreateGenreDTO } from './dto/create-genre.dto';
+import { FilterGenreDTO } from './dto/filter-genre.dto';
 
 @Controller('genres')
 export class GenresController {
   constructor(private categoriesService: GenresService) {}
 
   @Get()
-  findAll() {
-    return this.categoriesService.findAll();
+  findAll(@Query() query: FilterGenreDTO) {
+    return this.categoriesService.findAll(query);
   }
 
   @Post()

@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Genre } from './genre.entity';
 import { CreateGenreDTO } from './dto/create-genre.dto';
+import { FilterGenreDTO } from './dto/filter-genre.dto';
 
 @Injectable()
 export class GenresService {
@@ -10,8 +11,8 @@ export class GenresService {
     @InjectRepository(Genre) private genresRepository: Repository<Genre>,
   ) {}
 
-  findAll() {
-    return this.genresRepository.find();
+  findAll({ take }: FilterGenreDTO) {
+    return this.genresRepository.find({ take });
   }
 
   create(createGenreDTO: CreateGenreDTO) {
