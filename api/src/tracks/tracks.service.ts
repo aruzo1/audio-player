@@ -25,7 +25,7 @@ export class TracksService {
       query
         .innerJoin('track.genre', 'genre')
         .where(
-          "to_tsvector(title || ' ' || author || ' ' || genre.name) @@ to_tsquery(:term || ':*')",
+          "to_tsvector(title || ' ' || author || ' ' || genre.name) @@ plainto_tsquery(:term || ':*')",
           { term },
         );
     }
