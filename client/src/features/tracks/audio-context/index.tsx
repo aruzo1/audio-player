@@ -3,7 +3,7 @@ import useAudioValue from "./use-audio-value";
 
 type Context = ReturnType<typeof useAudioValue> | null;
 
-const AudioContext = createContext<Context>(null);
+export const AudioContext = createContext<Context>(null);
 
 export function AudioProvider({ children }: { children: ReactNode }) {
   const value = useAudioValue();

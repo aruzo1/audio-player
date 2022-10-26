@@ -1,5 +1,10 @@
-import { createGlobalStyle } from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
 import theme from "./theme";
+
+export const Page = styled.div<{ playing: boolean }>`
+  padding-top: 7rem;
+  padding-bottom: ${({ playing }) => (playing ? "8rem" : "2rem")};
+`;
 
 export const GlobalStyle = createGlobalStyle`
   html {

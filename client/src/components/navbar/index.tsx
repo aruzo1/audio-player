@@ -7,6 +7,10 @@ import Logo from "./logo";
 import SearchBar from "./search-bar";
 
 const StyledNavbar = styled.nav`
+  z-index: 2;
+  position: fixed;
+  top: 0;
+  width: 100%;
   padding: 1rem 0;
   background: ${theme.colors.neutral[800]};
 `;
