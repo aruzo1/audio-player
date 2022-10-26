@@ -16,8 +16,8 @@ export class TracksService {
     @InjectRepository(Track) private tracksRepository: Repository<Track>,
   ) {}
 
-  async findAll({ term, genreId }: FilterTrackDTO) {
-    const query = this.tracksRepository.createQueryBuilder('track');
+  async findAll({ term, genreId, take = 6 }: FilterTrackDTO) {
+    const query = this.tracksRepository.createQueryBuilder('track').take(take);
 
     if (genreId) query.where({ genreId });
 

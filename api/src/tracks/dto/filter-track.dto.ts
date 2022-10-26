@@ -3,11 +3,16 @@ import { Type } from 'class-transformer';
 
 export class FilterTrackDTO {
   @IsOptional()
-  @IsString()
-  term?: string;
+  @Type(() => Number)
+  @IsNumber()
+  take?: number;
 
   @IsOptional()
   @Type(() => Number)
   @IsNumber()
   genreId?: number;
+
+  @IsOptional()
+  @IsString()
+  term?: string;
 }
