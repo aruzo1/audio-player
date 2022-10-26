@@ -100,14 +100,14 @@ export class TracksService {
 
     if (
       track &&
-      new MaxFileSizeValidator({ maxSize: 10000000 }).isValid(track[0]) &&
+      new MaxFileSizeValidator({ maxSize: 30000000 }).isValid(track[0]) &&
       new FileTypeValidator({ fileType: 'audio/mpeg' }).isValid(track[0])
     ) {
       result.track = track[0].filename;
     }
     if (
       cover &&
-      new MaxFileSizeValidator({ maxSize: 500000 }).isValid(cover[0]) &&
+      new MaxFileSizeValidator({ maxSize: 10000000 }).isValid(cover[0]) &&
       new FileTypeValidator({ fileType: 'image/jpeg' }).isValid(cover[0])
     ) {
       result.cover = cover[0].filename;
