@@ -23,11 +23,13 @@ function HomePage() {
 
         <Tracks title="Latest Tracks" tracks={tracks} />
 
-        {genres
-          ? genres.map((genre) => <GenreTracks key={genre.id} genre={genre} />)
-          : Array.from({ length: numberOfTracks }, (_, i) => (
-              <GenreTracks key={i} genre={undefined} />
-            ))}
+        {genres === undefined &&
+          Array.from({ length: numberOfTracks }, (_, i) => (
+            <GenreTracks key={i} genre={undefined} />
+          ))}
+
+        {genres &&
+          genres.map((genre) => <GenreTracks key={genre.id} genre={genre} />)}
       </VStack>
     </Container>
   );
