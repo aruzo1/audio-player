@@ -24,7 +24,7 @@ export class TracksController {
   constructor(private tracksService: TracksService) {}
 
   @Get()
-  findAll(@Query() query : FilterTrackDTO) {
+  findAll(@Query() query: FilterTrackDTO) {
     return this.tracksService.findAll(query);
   }
 
@@ -67,14 +67,10 @@ export class TracksController {
       cover,
     }: { track?: Express.Multer.File[]; cover?: Express.Multer.File[] },
     @Param('id') id: number,
-    @Body() updateTrackDTO: UpdateTrackDTO,
+    @Body() data: UpdateTrackDTO,
   ) {
     const validFiles = this.tracksService.validateTrackAndCover(track, cover);
-    const updated = await this.tracksService.update(
-      id,
-      updateTrackDTO,
-      validFiles,
-    );
+    const updated = await this.tracksService.update(id, data, validFiles);
 
     if (!updated) throw new NotFoundException();
   }
@@ -93,12 +89,12 @@ export class TracksController {
       track,
       cover,
     }: { track?: Express.Multer.File[]; cover?: Express.Multer.File[] },
-    @Body() createTrackDTO: CreateTrackDTO,
+    @Body() data: CreateTrackDTO,
   ) {
     const validFiles = this.tracksService.validateTrackAndCover(track, cover);
 
     if (!validFiles.track || !validFiles.cover) throw new BadRequestException();
-    return this.tracksService.create(createTrackDTO, validFiles);
+    return this.tracksService.create(data, validFiles);
   }
 
   @Delete(':id')

@@ -16,7 +16,7 @@ export class TracksService {
     @InjectRepository(Track) private tracksRepository: Repository<Track>,
   ) {}
 
-  async findAll(props: FilterTrackDTO) {
+  findAll(props: FilterTrackDTO) {
     const { term, genreId, take = 6, sort, order = 'ASC' } = props;
     const query = this.tracksRepository.createQueryBuilder('track').take(take);
 
@@ -57,25 +57,22 @@ export class TracksService {
 
   async update(
     id: number,
-    updateTrackDTO: UpdateTrackDTO,
+    data: UpdateTrackDTO,
     files: { track?: string; cover?: string },
   ) {
     const result = await this.tracksRepository
       .createQueryBuilder('track')
       .update(Track)
-      .set({ ...updateTrackDTO, ...files })
+      .set({ ...data, ...files })
       .where({ id })
       .execute();
 
     return result.affected;
   }
 
-  create(
-    createTrackDTO: CreateTrackDTO,
-    files: { track?: string; cover?: string },
-  ) {
+  create(data: CreateTrackDTO, files: { track?: string; cover?: string }) {
     const track = this.tracksRepository.create({
-      ...createTrackDTO,
+      ...data,
       ...files,
     });
 
