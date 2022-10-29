@@ -15,8 +15,8 @@ export class GenresService {
     return this.genresRepository.find({ take });
   }
 
-  create(createGenreDTO: CreateGenreDTO) {
-    const category = this.genresRepository.create(createGenreDTO);
+  create(data: CreateGenreDTO) {
+    const category = this.genresRepository.create(data);
 
     return this.genresRepository.save(category);
   }

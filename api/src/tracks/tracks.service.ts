@@ -16,21 +16,25 @@ export class TracksService {
     @InjectRepository(Track) private tracksRepository: Repository<Track>,
   ) {}
 
-  async findAll({ term, genreId }: FilterTrackDTO) {
-    const query = this.tracksRepository.createQueryBuilder('track');
+  findAll(query: FilterTrackDTO) {
+    const { term, genreId, take = 6, sort, order = 'ASC' } = query;
 
-    if (genreId) query.where({ genreId });
+    const dbQuery = this.tracksRepository
+      .createQueryBuilder('track')
+      .take(take);
 
+    if (sort) dbQuery.orderBy(sort && `"${sort}"`, order);
+    if (genreId) dbQuery.where({ genreId });
     if (term) {
-      query
+      dbQuery
         .innerJoin('track.genre', 'genre')
         .where(
-          "to_tsvector(title || ' ' || author || ' ' || genre.name) @@ to_tsquery(:term || ':*')",
+          "to_tsvector(title || ' ' || author || ' ' || genre.name) @@ plainto_tsquery(:term || ':*')",
           { term },
         );
     }
 
-    return query.getMany();
+    return dbQuery.getMany();
   }
 
   findOne(id: number) {
@@ -56,27 +60,21 @@ export class TracksService {
 
   async update(
     id: number,
-    updateTrackDTO: UpdateTrackDTO,
+    data: UpdateTrackDTO,
     files: { track?: string; cover?: string },
   ) {
     const result = await this.tracksRepository
       .createQueryBuilder('track')
       .update(Track)
-      .set({ ...updateTrackDTO, ...files })
+      .set({ ...data, ...files })
       .where({ id })
       .execute();
 
     return result.affected;
   }
 
-  create(
-    createTrackDTO: CreateTrackDTO,
-    files: { track?: string; cover?: string },
-  ) {
-    const track = this.tracksRepository.create({
-      ...createTrackDTO,
-      ...files,
-    });
+  create(data: CreateTrackDTO, files: { track?: string; cover?: string }) {
+    const track = this.tracksRepository.create({ ...data, ...files });
 
     return this.tracksRepository.save(track);
   }

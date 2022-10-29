@@ -13,7 +13,7 @@ export class GenresController {
   }
 
   @Post()
-  create(@Body() createGenreDTO: CreateGenreDTO) {
-    return this.categoriesService.create(createGenreDTO);
+  create(@Body() data: CreateGenreDTO) {
+    return this.categoriesService.create(data);
   }
 }

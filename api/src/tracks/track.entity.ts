@@ -21,19 +21,9 @@ export class Track {
   @Exclude()
   track: string;
 
-  @Expose()
-  get trackUrl() {
-    return '/api/media/' + this.track;
-  }
-
   @Column()
   @Exclude()
   cover: string;
-
-  @Expose()
-  get coverUrl() {
-    return '/api/media/' + this.cover;
-  }
 
   @Column()
   title: string;
@@ -47,4 +37,14 @@ export class Track {
   @ManyToOne(() => Genre, (genre) => genre.tracks)
   @JoinColumn()
   genre: Genre;
+
+  @Expose()
+  get trackUrl() {
+    return `/api/media/${this.track}`;
+  }
+
+  @Expose()
+  get coverUrl() {
+    return `/api/media/${this.cover}`;
+  }
 }
