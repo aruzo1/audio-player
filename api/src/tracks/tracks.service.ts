@@ -16,11 +16,12 @@ export class TracksService {
     @InjectRepository(Track) private tracksRepository: Repository<Track>,
   ) {}
 
-  async findAll({ term, genreId, take = 6 }: FilterTrackDTO) {
+  async findAll(props: FilterTrackDTO) {
+    const { term, genreId, take = 6, sort, order = 'ASC' } = props;
     const query = this.tracksRepository.createQueryBuilder('track').take(take);
 
+    if (sort) query.orderBy(sort && `"${sort}"`, order);
     if (genreId) query.where({ genreId });
-
     if (term) {
       query
         .innerJoin('track.genre', 'genre')

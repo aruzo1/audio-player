@@ -11,7 +11,7 @@ import GenreTracks from "features/genres/genre-tracks";
 const numberOfTracks = 3;
 
 function HomePage() {
-  const [tracks] = useQuery<ITrack[]>("tracks");
+  const [tracks] = useQuery<ITrack[]>("tracks?sort=createdAt&order=DESC");
   const [genres] = useQuery<IGenre[]>(`genres?take=${numberOfTracks}`);
 
   return (
