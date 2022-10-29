@@ -12,6 +12,7 @@ import {
   Put,
   Delete,
   Query,
+  ParseIntPipe,
 } from '@nestjs/common';
 import { FileFieldsInterceptor } from '@nestjs/platform-express';
 import { CreateTrackDTO } from './dto/create-track.dto';
@@ -29,7 +30,7 @@ export class TracksController {
   }
 
   @Get(':id')
-  async findOne(@Param('id') id: number) {
+  async findOne(@Param('id', ParseIntPipe) id: number) {
     const track = await this.tracksService.findOne(id);
 
     if (!track) throw new NotFoundException();
@@ -37,7 +38,7 @@ export class TracksController {
   }
 
   @Get(':id/prev')
-  async findPrev(@Param('id') id: number) {
+  async findPrev(@Param('id', ParseIntPipe) id: number) {
     const track = await this.tracksService.findPrevOrNext(id);
 
     if (!track) throw new NotFoundException();
@@ -45,34 +46,11 @@ export class TracksController {
   }
 
   @Get(':id/next')
-  async findNext(@Param('id') id: number) {
+  async findNext(@Param('id', ParseIntPipe) id: number) {
     const track = await this.tracksService.findPrevOrNext(id, true);
 
     if (!track) throw new NotFoundException();
     return track;
-  }
-
-  @Put(':id')
-  @HttpCode(204)
-  @UseInterceptors(
-    FileFieldsInterceptor([
-      { name: 'track', maxCount: 1 },
-      { name: 'cover', maxCount: 1 },
-    ]),
-  )
-  async update(
-    @UploadedFiles()
-    {
-      track,
-      cover,
-    }: { track?: Express.Multer.File[]; cover?: Express.Multer.File[] },
-    @Param('id') id: number,
-    @Body() data: UpdateTrackDTO,
-  ) {
-    const validFiles = this.tracksService.validateTrackAndCover(track, cover);
-    const updated = await this.tracksService.update(id, data, validFiles);
-
-    if (!updated) throw new NotFoundException();
   }
 
   @Post()
@@ -97,9 +75,32 @@ export class TracksController {
     return this.tracksService.create(data, validFiles);
   }
 
+  @Put(':id')
+  @HttpCode(204)
+  @UseInterceptors(
+    FileFieldsInterceptor([
+      { name: 'track', maxCount: 1 },
+      { name: 'cover', maxCount: 1 },
+    ]),
+  )
+  async update(
+    @UploadedFiles()
+    {
+      track,
+      cover,
+    }: { track?: Express.Multer.File[]; cover?: Express.Multer.File[] },
+    @Param('id', ParseIntPipe) id: number,
+    @Body() data: UpdateTrackDTO,
+  ) {
+    const validFiles = this.tracksService.validateTrackAndCover(track, cover);
+    const updated = await this.tracksService.update(id, data, validFiles);
+
+    if (!updated) throw new NotFoundException();
+  }
+
   @Delete(':id')
   @HttpCode(204)
-  async delete(@Param('id') id: number) {
+  async delete(@Param('id', ParseIntPipe) id: number) {
     const deleted = await this.tracksService.delete(id);
 
     if (!deleted) throw new NotFoundException();

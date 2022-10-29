@@ -16,14 +16,17 @@ export class TracksService {
     @InjectRepository(Track) private tracksRepository: Repository<Track>,
   ) {}
 
-  findAll(props: FilterTrackDTO) {
-    const { term, genreId, take = 6, sort, order = 'ASC' } = props;
-    const query = this.tracksRepository.createQueryBuilder('track').take(take);
+  findAll(query: FilterTrackDTO) {
+    const { term, genreId, take = 6, sort, order = 'ASC' } = query;
 
-    if (sort) query.orderBy(sort && `"${sort}"`, order);
-    if (genreId) query.where({ genreId });
+    const dbQuery = this.tracksRepository
+      .createQueryBuilder('track')
+      .take(take);
+
+    if (sort) dbQuery.orderBy(sort && `"${sort}"`, order);
+    if (genreId) dbQuery.where({ genreId });
     if (term) {
-      query
+      dbQuery
         .innerJoin('track.genre', 'genre')
         .where(
           "to_tsvector(title || ' ' || author || ' ' || genre.name) @@ plainto_tsquery(:term || ':*')",
@@ -31,7 +34,7 @@ export class TracksService {
         );
     }
 
-    return query.getMany();
+    return dbQuery.getMany();
   }
 
   findOne(id: number) {
@@ -71,10 +74,7 @@ export class TracksService {
   }
 
   create(data: CreateTrackDTO, files: { track?: string; cover?: string }) {
-    const track = this.tracksRepository.create({
-      ...data,
-      ...files,
-    });
+    const track = this.tracksRepository.create({ ...data, ...files });
 
     return this.tracksRepository.save(track);
   }

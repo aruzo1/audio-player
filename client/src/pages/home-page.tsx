@@ -3,6 +3,7 @@ import useQuery from "hooks/use-query";
 import VStack from "components/v-stack";
 import Container from "components/container";
 import Button from "components/button";
+import Typography from "components/typography";
 import Tracks from "features/tracks/tracks";
 import { ITrack } from "features/tracks/types";
 import { IGenre } from "features/genres/types";
@@ -16,7 +17,7 @@ function HomePage() {
 
   return (
     <Container>
-      <VStack gap="1rem">
+      <VStack gap="1.5rem">
         <Link to="/tracks/upload">
           <Button variant="brand">Upload Track</Button>
         </Link>
@@ -30,6 +31,10 @@ function HomePage() {
 
         {genres &&
           genres.map((genre) => <GenreTracks key={genre.id} genre={genre} />)}
+
+        <Typography>
+          Contact e-mail: aruzo@aruzo.it
+        </Typography>
       </VStack>
     </Container>
   );

@@ -15,7 +15,7 @@ export class FilterTrackDTO {
   term?: string;
 
   @IsOptional()
-  @IsString()
+  @IsIn(['createdAt'])
   sort?: string;
 
   @IsOptional()
