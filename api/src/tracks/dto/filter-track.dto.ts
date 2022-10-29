@@ -1,13 +1,24 @@
-import { IsNumber, IsOptional, IsString } from 'class-validator';
+import { IsIn, IsOptional, IsString } from 'class-validator';
 import { Type } from 'class-transformer';
 
 export class FilterTrackDTO {
+  @IsOptional()
+  @Type(() => Number)
+  take?: number;
+
+  @IsOptional()
+  @Type(() => Number)
+  genreId?: number;
+
   @IsOptional()
   @IsString()
   term?: string;
 
   @IsOptional()
-  @Type(() => Number)
-  @IsNumber()
-  genreId?: number;
+  @IsIn(['createdAt'])
+  sort?: string;
+
+  @IsOptional()
+  @IsIn(['ASC', 'DESC'])
+  order?: 'ASC' | 'DESC';
 }
