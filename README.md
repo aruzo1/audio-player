@@ -8,8 +8,11 @@
 
 ## Features
 - Track adding/editing/deleting songs form
+- Play next/prev track
 - Tracks searching bar
 - Tracks are organized by genres
+- Set track volume
+- Mute/Unmute track
 - Tracks loading skeletons
 
 ## Build With
