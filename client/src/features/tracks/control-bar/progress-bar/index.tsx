@@ -8,7 +8,13 @@ import {
 } from "./style";
 
 function ProgressBar() {
-  const { duration, currentTime, currentTimeHandler } = useProgressBar();
+  const {
+    duration,
+    currentTime,
+    toggleHolding,
+    currentTimeHandler,
+    audioCurrentTimeHandler,
+  } = useProgressBar();
 
   return (
     <StyledProgressBar>
@@ -20,6 +26,8 @@ function ProgressBar() {
         max={duration || 1}
         value={currentTime}
         onChange={currentTimeHandler}
+        onMouseDown={toggleHolding}
+        onMouseUp={audioCurrentTimeHandler}
       />
 
       <ProgressBarDuration as="span" variant="h5">
