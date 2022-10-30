@@ -16,7 +16,6 @@ function SearchBar() {
     e.preventDefault();
 
     navigate(`/search?term=${term}`);
-    setTerm("");
   }
 
   return (

@@ -8,7 +8,7 @@ interface Props {
 
 const HStack = styled.div<Props>`
   display: flex;
-  ${({ justify }) => justify && `justify-content: ${justify};`}
+  justify-content: ${({ justify }) => justify};
   align-items: ${({ align }) => (align ? align : "center")};
   gap: ${({ gap }) => gap};
 `;

@@ -8,10 +8,10 @@ const pulseKeyframes = keyframes`
 
 const spinKeyframes = keyframes`
   from {
-    transform:rotate(0deg);
+    transform: rotate(0deg);
   }
   to {
-    transform:rotate(360deg);
+    transform: rotate(360deg);
   }
 `;
 

@@ -1,4 +1,3 @@
-import { Navigate } from "react-router-dom";
 import Container from "components/container";
 import Form from "components/form";
 import Button from "components/button";
@@ -14,8 +13,7 @@ function EditTrackPage() {
     genres,
   } = useEditTrackPage();
 
-  if (initalValues === null || genres === null) return <Navigate to="/" />;
-  if (!initalValues || !genres) return null;
+  if (!initalValues) return null;
 
   return (
     <Container>
@@ -65,7 +63,7 @@ function EditTrackPage() {
           type="select"
           name="genreId"
           label="Genre"
-          options={genres.map(({ id, name }) => ({ value: id, name }))}
+          options={genres?.map(({ id, name }) => ({ value: id, name }))}
         />
       </Form>
     </Container>

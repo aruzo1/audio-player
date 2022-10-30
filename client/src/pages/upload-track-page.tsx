@@ -28,8 +28,8 @@ function UploadTrackPage() {
   const navigate = useNavigate();
   const [genres] = useQuery<IGenre[]>("genres");
 
-  function submitHandler(values: ICrateTrack) {
-    tracksService.create(values).then(() => navigate("/"));
+  async function submitHandler(values: ICrateTrack) {
+    await tracksService.create(values).then(() => navigate("/"));
   }
 
   return (

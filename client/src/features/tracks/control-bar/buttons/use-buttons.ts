@@ -27,11 +27,8 @@ function useButtons() {
   }
 
   function toggle() {
-    if (audio.paused) {
-      audio.play();
-    } else {
-      audio.pause();
-    }
+    if (audio.paused) audio.play();
+    else audio.pause();
   }
 
   return {

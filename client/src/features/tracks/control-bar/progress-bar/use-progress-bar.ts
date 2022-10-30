@@ -9,16 +9,16 @@ function useProgressBar() {
   const [holding, setHolding] = useState(false);
 
   useEffect(() => {
-    function currentTimeListener() {
+    function timeUpdateListener() {
       if (!holding) setCurrentTime(audio.currentTime);
     }
 
     audio.addEventListener("loadedmetadata", forceUpdate);
-    audio.addEventListener("timeupdate", currentTimeListener);
+    audio.addEventListener("timeupdate", timeUpdateListener);
 
     return () => {
       audio.removeEventListener("loadedmetadata", forceUpdate);
-      audio.removeEventListener("timeupdate", currentTimeListener);
+      audio.removeEventListener("timeupdate", timeUpdateListener);
     };
   }, [audio, forceUpdate, holding]);
 

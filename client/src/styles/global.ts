@@ -9,8 +9,8 @@ export const Page = styled.div<{ playing: boolean }>`
 export const GlobalStyle = createGlobalStyle`
   html {
     color: #fff;
-    font-family: "Plus Jakarta Sans", sans-serif;
     font-weight: 300;
+    font-family: "Plus Jakarta Sans", sans-serif;
     background: ${theme.colors.neutral[900]};
   }
 

@@ -1,6 +1,6 @@
-import styled from "styled-components";
+import styled, { CSSProperties } from "styled-components";
 
-const VStack = styled.div<{ gap?: string }>`
+const VStack = styled.div<{ gap?: CSSProperties["gap"] }>`
   display: flex;
   flex-direction: column;
   align-items: start;

@@ -17,8 +17,8 @@ function useEditTrackPage() {
   const [genres] = useQuery<IGenre[]>("genres");
   const [track] = useQuery<ITrack>(`tracks/${id}`);
 
-  function submitHandler(values: IUpdateTrack) {
-    tracksService.update(id!, values).then(() => navigate("/"));
+  async function submitHandler(values: IUpdateTrack) {
+    await tracksService.update(id!, values).then(() => navigate("/"));
   }
   function deleteHandler() {
     tracksService.delete(id!).then(() => navigate("/"));
