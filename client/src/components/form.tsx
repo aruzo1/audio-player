@@ -50,6 +50,7 @@ function Form(props: Props) {
                     variant="brand"
                     size="lg"
                     loading={isSubmitting}
+                    disabled={isSubmitting}
                   >
                     {buttonText}
                   </Button>
@@ -61,6 +62,7 @@ function Form(props: Props) {
                   variant="brand"
                   size="lg"
                   loading={isSubmitting}
+                  disabled={isSubmitting}
                 >
                   {buttonText}
                 </Button>

@@ -1,5 +1,5 @@
-import Spinner from "components/spinner";
 import { ComponentProps, ReactNode } from "react";
+import { ButtonSpinner } from ".";
 
 interface Props extends ComponentProps<"button"> {
   loading?: boolean;
@@ -8,7 +8,10 @@ interface Props extends ComponentProps<"button"> {
 
 function UnstyledButton({ children, loading, ...rest }: Props) {
   return (
-    <button {...rest}>{loading ? <Spinner size="21px" /> : children}</button>
+    <button {...rest}>
+      {loading && <ButtonSpinner size="1.25rem" />}
+      {children}
+    </button>
   );
 }
 

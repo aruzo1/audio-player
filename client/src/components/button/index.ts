@@ -1,3 +1,4 @@
+import Spinner from "components/spinner";
 import styled, { css } from "styled-components";
 import theme from "styles/theme";
 import UnstyledButton from "./unstyled-button";
@@ -37,9 +38,11 @@ interface StyledProps {
   variant?: keyof typeof variants;
   size?: keyof typeof sizes;
   full?: boolean;
+  loading?: boolean;
 }
 
 const Button = styled(UnstyledButton)<StyledProps>`
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -52,6 +55,7 @@ const Button = styled(UnstyledButton)<StyledProps>`
   cursor: pointer;
   transition: background-color ${theme.transition};
   gap: 0.5rem;
+  ${({ loading }) => loading && `color: transparent;`}
 
   &:disabled {
     cursor: not-allowed;
@@ -63,6 +67,10 @@ const Button = styled(UnstyledButton)<StyledProps>`
 
   ${({ variant }) => variants[variant || "neutral"]}
   ${({ size }) => sizes[size || "md"]}
+`;
+
+export const ButtonSpinner = styled(Spinner)`
+  position: absolute;
 `;
 
 export default Button;
