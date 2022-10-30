@@ -16,6 +16,7 @@ services:
     build:
       context: ./api
       target: dev
+    restart: always
     volumes:
       - ./api:/app
       - /app/node_modules
@@ -29,26 +30,27 @@ services:
       DB_PASS: haslo123
     depends_on:
       - database
-  client:
+  frontend:
     build:
-      context: ./client
+      context: ./frontend
       target: dev
+    restart: always
     volumes:
-      - ./client:/app
+      - ./frontend:/app
       - /app/node_modules
-    environment:
-      WATCHPACK_POLLING: "true"
+      - /app/.next
     depends_on:
       - api
   nginx:
     image: nginx:1.15
+    restart: always
     ports:
       - 3000:80
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf
       - media:/usr/share/nginx/media
     depends_on:
-      - client
+      - frontend
       - api
 
 volumes:

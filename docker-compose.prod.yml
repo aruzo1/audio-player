@@ -28,12 +28,10 @@ services:
       DB_PASS: haslo123
     depends_on:
       - database
-  client:
+  frontend:
     build:
-      context: ./client
+      context: ./frontend
       target: prod
-    volumes:
-      - client:/app/build
     depends_on:
       - api
   nginx:
@@ -43,13 +41,12 @@ services:
       - 80:80
       - 443:80
     volumes:
-      - ./nginx.prod.conf:/etc/nginx/nginx.conf
+      - ./nginx.conf:/etc/nginx/nginx.conf
       - media:/usr/share/nginx/media
-      - client:/usr/share/nginx/client
     depends_on:
+      - frontend
       - api
 
 volumes:
   database:
   media:
-  client:
