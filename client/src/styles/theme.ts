@@ -1,9 +1,18 @@
 import { css, keyframes } from "styled-components";
 
 const pulseKeyframes = keyframes`
-50% {
-  opacity: 0.5;
-}
+  50% {
+    opacity: 0.5;
+  }
+`;
+
+const spinKeyframes = keyframes`
+  from {
+    transform:rotate(0deg);
+  }
+  to {
+    transform:rotate(360deg);
+  }
 `;
 
 const theme = {
@@ -60,6 +69,9 @@ const theme = {
   animations: {
     pulse: css`
       animation: ${pulseKeyframes} 2s infinite;
+    `,
+    spin: css`
+      animation: ${spinKeyframes} 2s infinite;
     `,
   },
 };

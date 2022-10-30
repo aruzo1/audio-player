@@ -38,7 +38,7 @@ function Track({ track }: { track: ITrack }) {
             <Disclosure.Content>
               <TrackMenuContent>
                 <Link to={`/tracks/edit/${track.id}`}>
-                  <Button full={true}>Edit</Button>
+                  <Button full>Edit</Button>
                 </Link>
               </TrackMenuContent>
             </Disclosure.Content>
@@ -47,11 +47,11 @@ function Track({ track }: { track: ITrack }) {
       </TrackCover>
 
       <TrackInfo>
-        <Typography as="h3" variant="h4" truncate={true}>
+        <Typography as="h3" variant="h4" truncate>
           {track.title}
         </Typography>
 
-        <Typography as="span" truncate={true}>
+        <Typography as="span" truncate>
           {track.author}
         </Typography>
       </TrackInfo>

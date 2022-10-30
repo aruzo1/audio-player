@@ -1,5 +1,6 @@
 import styled, { css } from "styled-components";
 import theme from "styles/theme";
+import UnstyledButton from "./unstyled-button";
 
 const variants = {
   brand: css`
@@ -32,13 +33,13 @@ const sizes = {
   `,
 };
 
-interface Props {
+interface StyledProps {
   variant?: keyof typeof variants;
   size?: keyof typeof sizes;
   full?: boolean;
 }
 
-const Button = styled.button<Props>`
+const Button = styled(UnstyledButton)<StyledProps>`
   display: flex;
   justify-content: center;
   align-items: center;

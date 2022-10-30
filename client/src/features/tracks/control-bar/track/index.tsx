@@ -10,11 +10,11 @@ function Track({ track }: { track: ITrack }) {
       </TrackCover>
 
       <TrackInfo>
-        <Typography as="h3" variant="h4" truncate={true}>
+        <Typography as="h3" variant="h4" truncate>
           {track.title}
         </Typography>
         
-        <Typography as="span" truncate={true}>
+        <Typography as="span" truncate>
           {track.author}
         </Typography>
       </TrackInfo>

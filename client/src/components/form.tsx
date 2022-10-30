@@ -38,24 +38,36 @@ function Form(props: Props) {
         validationSchema={validationSchema}
         onSubmit={onSubmit}
       >
-        <FormikForm style={{ maxWidth: "100%" }}>
-          <VStack gap="1rem">
-            {children}
+        {({ isSubmitting }) => (
+          <FormikForm style={{ maxWidth: "100%" }}>
+            <VStack gap="1rem">
+              {children}
 
-            {extraButton ? (
-              <HStack gap="1rem">
-                <Button type="submit" variant="brand" size="lg">
+              {extraButton ? (
+                <HStack gap="1rem">
+                  <Button
+                    type="submit"
+                    variant="brand"
+                    size="lg"
+                    loading={isSubmitting}
+                  >
+                    {buttonText}
+                  </Button>
+                  {extraButton}
+                </HStack>
+              ) : (
+                <Button
+                  type="submit"
+                  variant="brand"
+                  size="lg"
+                  loading={isSubmitting}
+                >
                   {buttonText}
                 </Button>
-                {extraButton}
-              </HStack>
-            ) : (
-              <Button type="submit" variant="brand" size="lg">
-                {buttonText}
-              </Button>
-            )}
-          </VStack>
-        </FormikForm>
+              )}
+            </VStack>
+          </FormikForm>
+        )}
       </Formik>
     </VStack>
   );
