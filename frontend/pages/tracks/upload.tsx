@@ -1,12 +1,12 @@
 import * as yup from "yup";
 import { GetServerSideProps, NextPage } from "next";
 import { useRouter } from "next/router";
+import client from "fetch/client";
 import pagesPropsService from "services/pages-props-service";
+import { ICrateTrack, ITrack } from "features/tracks/types";
 import Container from "components/container";
 import Form from "components/form";
 import Input from "components/input";
-import { ICrateTrack } from "features/tracks/types";
-import { tracksService } from "features/tracks/service";
 
 const initialValues = {
   title: "",
@@ -32,7 +32,11 @@ const UploadTrackPage: NextPage<Props> = ({ genres }) => {
   const router = useRouter();
 
   async function submitHandler(values: ICrateTrack) {
-    await tracksService.create(values).then(() => router.push("/"));
+    await client
+      .post<ITrack>("tracks", values, {
+        headers: { "Content-Type": "multipart/form-data" },
+      })
+      .then(() => router.push("/"));
   }
 
   return (

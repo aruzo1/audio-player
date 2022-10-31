@@ -3,6 +3,9 @@ import { ITrack } from "../../types";
 import PlayButton from "components/play-button";
 import Typography from "components/typography";
 import { Disclosure } from "components/disclosure";
+import Button from "components/button";
+import DotsIcon from "./dots-icon";
+import useTrack from "./use-track";
 import {
   TrackCover,
   TrackImg,
@@ -11,9 +14,6 @@ import {
   TrackMenu,
   TrackMenuContent,
 } from "./style";
-import Button from "components/button";
-import DotsIcon from "./dots-icon";
-import useTrack from "./use-track";
 
 function Track({ track }: { track: ITrack }) {
   const { playing, toggleTrack, menu, menuRef } = useTrack(track);

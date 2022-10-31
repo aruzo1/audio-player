@@ -1,33 +1,33 @@
 import Slider from "components/slider";
 import formatSeconds from "helpers/format-seconds";
-import useProgressBar from "./use-progress-bar";
 import {
   StyledProgressBar,
   ProgressBarTime,
   ProgressBarDuration,
 } from "./style";
+import useProgressBar from "./use-progress-bar";
 
 function ProgressBar() {
   const {
+    virtualTime,
     duration,
-    currentTime,
-    toggleHolding,
+    setVirtualTime,
+    setHolding,
     currentTimeHandler,
-    audioCurrentTimeHandler,
   } = useProgressBar();
 
   return (
     <StyledProgressBar>
       <ProgressBarTime as="span" variant="h5">
-        {formatSeconds(currentTime)}
+        {formatSeconds(virtualTime)}
       </ProgressBarTime>
 
       <Slider
-        max={duration || 1}
-        value={currentTime}
-        onChange={currentTimeHandler}
-        onMouseDown={toggleHolding}
-        onMouseUp={audioCurrentTimeHandler}
+        max={duration}
+        value={virtualTime}
+        onChange={(e) => setVirtualTime(+e.currentTarget.value)}
+        onMouseDown={() => setHolding(true)}
+        onMouseUp={currentTimeHandler}
       />
 
       <ProgressBarDuration as="span" variant="h5">

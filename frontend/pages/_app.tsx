@@ -1,8 +1,9 @@
 import type { AppProps } from "next/app";
-import { GlobalStyle, Page } from "styles/global";
-import { AudioContext, AudioProvider } from "features/tracks/audio-context";
-import Navbar from "components/navbar";
 import Head from "next/head";
+import { GlobalStyle, Page } from "styles/global";
+import Navbar from "components/navbar";
+import { AudioContext, AudioProvider } from "features/tracks/audio-context";
+import ControlBar from "features/tracks/control-bar";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
@@ -12,16 +13,17 @@ export default function App({ Component, pageProps }: AppProps) {
       </Head>
 
       <GlobalStyle />
-      
+
       <AudioProvider>
         <Navbar />
         <AudioContext.Consumer>
           {(value) => (
-            <Page playing={Boolean(value!.track)}>
+            <Page playing={Boolean(value?.track)}>
               <Component {...pageProps} />
             </Page>
           )}
         </AudioContext.Consumer>
+        <ControlBar />
       </AudioProvider>
     </>
   );

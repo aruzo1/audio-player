@@ -1,13 +1,13 @@
+import { GetServerSideProps, NextPage } from "next";
+import { useRouter } from "next/router";
 import * as yup from "yup";
+import client from "fetch/client";
+import pagesPropsService from "services/pages-props-service";
+import { IUpdateTrack } from "features/tracks/types";
 import Container from "components/container";
 import Form from "components/form";
 import Button from "components/button";
 import Input from "components/input";
-import { GetServerSideProps, NextPage } from "next";
-import { tracksService } from "features/tracks/service";
-import { IUpdateTrack } from "features/tracks/types";
-import { useRouter } from "next/router";
-import pagesPropsService from "services/pages-props-service";
 
 const validationSchema = yup.object().shape({
   title: yup.string().required(),
@@ -22,10 +22,14 @@ const EditTrackPage: NextPage<Props> = (props) => {
   const router = useRouter();
 
   async function submitHandler(values: IUpdateTrack) {
-    await tracksService.update(id, values).then(() => router.push("/"));
+    await client
+      .put<void>(`tracks/${id}`, values, {
+        headers: { "Content-Type": "multipart/form-data" },
+      })
+      .then(() => router.push("/"));
   }
   function deleteHandler() {
-    tracksService.delete(id).then(() => router.push("/"));
+    client.delete<void>(`tracks/${id}`).then(() => router.push("/"));
   }
 
   return (
