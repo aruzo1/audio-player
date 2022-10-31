@@ -13,7 +13,6 @@
 - Tracks are organized by genres
 - Set track volume
 - Mute/Unmute track
-- Tracks loading skeletons
 
 ## Build With
 
