@@ -7,7 +7,7 @@
 ![preview](./images/preview.png)
 
 ## Features
-- Track adding/editing/deleting songs form
+- Tracks adding/editing/deleting form
 - Play next/prev track
 - Tracks searching bar
 - Tracks are organized by genres
