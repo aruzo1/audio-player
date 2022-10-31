@@ -17,9 +17,11 @@
 
 ## Build With
 
-- React
-- Nest
+- Next.js
+- Nest.js
 - Styled Components
+- PostgreSQL
+- Docker
 
 ## Installation and Usage
 `You must have Docker Desktop installed`
