@@ -18,16 +18,14 @@ const validationSchema = yup.object().shape({
 type Props = Awaited<ReturnType<typeof pagesPropsService["getTrackEditProps"]>>;
 
 const EditTrackPage: NextPage<Props> = (props) => {
-  const { initialValues, genres } = props!;
+  const { id, initialValues, genres } = props!;
   const router = useRouter();
 
   async function submitHandler(values: IUpdateTrack) {
-    await tracksService
-      .update(initialValues.id, values)
-      .then(() => router.push("/"));
+    await tracksService.update(id, values).then(() => router.push("/"));
   }
   function deleteHandler() {
-    tracksService.delete(initialValues.id).then(() => router.push("/"));
+    tracksService.delete(id).then(() => router.push("/"));
   }
 
   return (

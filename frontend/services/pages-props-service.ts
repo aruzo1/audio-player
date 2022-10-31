@@ -49,7 +49,15 @@ const pagesPropsService = {
 
     const genres = await server.get<IGenre[]>("genres").then((res) => res.data);
 
-    return { initialValues: track, genres };
+    return {
+      id: track.id,
+      initialValues: {
+        title: track.title,
+        author: track.author,
+        genreId: track.genreId,
+      },
+      genres,
+    };
   },
 };
 
