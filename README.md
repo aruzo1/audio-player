@@ -1,6 +1,6 @@
 # Audio Player
 
-### Audio Player is an website that gives you access to songs from other users around the world.
+### Audio Player is a website that gives you access to songs from other users around the world.
 
 ### https://audio-player.aruzo.it
 
